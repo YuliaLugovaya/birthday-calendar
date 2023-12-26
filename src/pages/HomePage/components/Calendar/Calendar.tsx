@@ -54,12 +54,7 @@ export const Calendar: FC = () => {
   return (
     <Box>
       {monthItems.map((month) => (
-        <Month
-          key={month.id}
-          title={month.title}
-          year={month.year}
-          month={month.month}
-        />
+        <Month key={month.id} title={month.title} year={month.year} />
       ))}
     </Box>
   );

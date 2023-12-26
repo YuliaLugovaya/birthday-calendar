@@ -4,8 +4,14 @@ import { styles } from "./Month.styled";
 import { IMonthProps } from "./MonthTypes";
 import { Day } from "components/Day";
 import days from "config/days";
+import months from "config/months";
 
-export const Month: FC<IMonthProps> = ({ title, year, month }) => {
+export const Month: FC<IMonthProps> = ({ title, year }) => {
+  const monthIndex = months.findIndex((month) => month.title === title);
+  const filteredDays = days.filter((day) => {
+    const dayMonth = parseInt(day.date.split("-")[1], 10);
+    return dayMonth === monthIndex + 1;
+  });
   return (
     <Box>
       <Typography>
@@ -21,7 +27,7 @@ export const Month: FC<IMonthProps> = ({ title, year, month }) => {
         <Box>вс</Box>
       </Box>
       <Box>
-        {days.map((day) => (
+        {filteredDays.map((day) => (
           <Day key={day.id} date={day.date} />
         ))}
       </Box>

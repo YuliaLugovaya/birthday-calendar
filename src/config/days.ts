@@ -10,10 +10,11 @@ const allDays = eachDayOfInterval({
 
 const days = allDays.reduce(
   (acc: { id: string; date: string }[], day, index) => {
-    return acc.concat({
+    acc.push({
       id: (index + 1).toString(),
-      date: format(day, "dd"),
+      date: format(day, "yyyy-MM-dd"),
     });
+    return acc;
   },
   [],
 );
