@@ -1,6 +1,7 @@
 export const styles = {
   calendarContainer: {
     maxWidth: "100%",
+    p: "0 20px",
     "& .slick-slider": {
       "& .slick-arrow": {
         display: "none !important",

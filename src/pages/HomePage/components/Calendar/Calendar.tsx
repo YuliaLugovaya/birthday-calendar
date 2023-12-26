@@ -52,7 +52,7 @@ export const Calendar: FC = () => {
   // };
 
   return (
-    <Box>
+    <Box sx={styles.calendarContainer}>
       {monthItems.map((month) => (
         <Month key={month.id} title={month.title} year={month.year} />
       ))}
