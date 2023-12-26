@@ -1,0 +1,1 @@
+export { useLocationScrollToTop } from "./useLocationScrollToTop";

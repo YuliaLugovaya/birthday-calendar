@@ -1,0 +1,59 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f9f9f9;
+}
+
+.Toastify__toast--success {
+  background-color: #ffffff;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 25px;
+  color: #919191;
+}
+
+.Toastify__toast--error {
+  background-color: rgba(231, 79, 79, 0.99);
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 25px;
+  color: #ffffff;
+}
+
+.Toastify__close-button>svg {
+  color: #ffffff;
+}
+
+.Toastify__toast-icon {
+  display: none;
+}
+
+[role|="menubar"] {
+  left: 335px !important;
+}

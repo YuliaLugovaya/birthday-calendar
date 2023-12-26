@@ -1,0 +1,51 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "camelcase": "error",
+    "react/jsx-props-no-spreading": "off",
+    "children?: React.ReactNode": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/display-name": "off",
+    "react/require-default-props": "off",
+    "react/destructuring-assignment": "off",
+    "no-param-reassign": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      },
+      {
+        "indent": ["true", 2]
+      }
+    ]
+  }
+}
