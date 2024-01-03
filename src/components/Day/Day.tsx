@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Box, Typography } from "@mui/material";
-import { styles } from "./Month.styled";
+import { Box, Button, Typography } from "@mui/material";
+import { styles } from "./Day.styled";
 import { IDayProps } from "./DayTypes";
 
 export const Day: FC<IDayProps> = ({ date }) => {
@@ -8,8 +8,8 @@ export const Day: FC<IDayProps> = ({ date }) => {
   date[8] === "0" ? (day = date.slice(9)) : (day = date.slice(8));
 
   return (
-    <Box>
+    <Button sx={styles.dayContainer}>
       <Typography>{day}</Typography>
-    </Box>
+    </Button>
   );
 };

@@ -2,7 +2,7 @@ export const styles = {
   monthContainer: {
     display: "flex",
     flexDirection: "column",
-    width: "60%",
+    width: "90%",
     m: "0 auto",
   },
   monthTitle: {
@@ -17,6 +17,10 @@ export const styles = {
   monthDay: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
+    maxWidth: "150px",
+    height: "70px",
+    gap: "10px",
   },
   monthWrapper: {
     display: "grid",
@@ -26,5 +30,6 @@ export const styles = {
       display: "flex",
       justifyContent: "center",
     },
+    gap: "10px",
   },
 };

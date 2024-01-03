@@ -1,5 +1,8 @@
 export const styles = {
   calendarContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     maxWidth: "100%",
     p: "0 20px",
     "& .slick-slider": {
@@ -9,17 +12,14 @@ export const styles = {
       "& .slick-list": {
         width: {
           xs: "100vw",
-          lg: "60vw",
+          lg: "70vw",
         },
         overflow: "hidden",
         margin: "0 auto",
-        "& .slick-track": {
-          width: "10000px !important",
-        },
-        p: "30px 50px !important",
+        p: "0px",
       },
       "& .slick-slide": {
-        width: "250px",
+        width: "100%",
         justifyContent: "center",
       },
     },
@@ -37,14 +37,14 @@ export const styles = {
     },
   },
   calendarPrev: {
-    bgcolor: "color.yellow",
+    bgcolor: "color.background",
     borderRadius: "50px",
     width: "50px",
     height: "50px",
     minWidth: "0px",
   },
   calendarNext: {
-    bgcolor: "color.yellow",
+    bgcolor: "color.background",
     borderRadius: "50px",
     width: "50px",
     height: "50px",

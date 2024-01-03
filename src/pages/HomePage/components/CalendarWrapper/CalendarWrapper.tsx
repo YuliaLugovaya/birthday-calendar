@@ -7,7 +7,7 @@ export const CalendarWrapper: FC = () => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   return (
     <Box sx={styles.calendarWrapper}>
-      {isDesktop && (
+      {/* {isDesktop && (
         <Box sx={styles.calendarContent}>
           <Typography sx={styles.calendarTitle}>
             Дни рождения родных и близких, свадьбы, семейные праздники - все
@@ -16,7 +16,7 @@ export const CalendarWrapper: FC = () => {
             поздравление.
           </Typography>
         </Box>
-      )}
+      )} */}
       <Calendar />
     </Box>
   );

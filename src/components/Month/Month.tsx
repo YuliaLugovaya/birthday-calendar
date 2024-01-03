@@ -17,6 +17,7 @@ export const Month: FC<IMonthProps> = ({ title, year }) => {
   const weekDaysArray = [1, 2, 3, 4, 5, 6, 0];
   const startIndex = weekDaysArray.indexOf(firstDayOfWeek);
   const emptyCells = Array(startIndex).fill(null);
+
   return (
     <Box sx={styles.monthContainer}>
       <Typography sx={styles.monthTitle}>
