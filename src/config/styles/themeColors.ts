@@ -10,6 +10,8 @@ export const colors = {
     birthday: "#fbc02d",
     other: "#81c784",
     wedding: "#ffab91",
+    disabled: "#e0e0e0",
+    grey: "#424242",
   },
 };
 
@@ -22,6 +24,8 @@ declare module "@mui/material/styles" {
       birthday: string;
       other: string;
       wedding: string;
+      disabled: string;
+      grey: string;
     };
   }
   interface PaletteOptions {
@@ -32,6 +36,8 @@ declare module "@mui/material/styles" {
       birthday?: string;
       other?: string;
       wedding?: string;
+      disabled?: string;
+      grey?: string;
     };
   }
 }

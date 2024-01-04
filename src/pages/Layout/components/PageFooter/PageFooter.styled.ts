@@ -2,7 +2,7 @@ export const styles = {
   footerWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    p: "20px 50px",
+    p: "15px 50px",
     bgcolor: "color.hover",
     color: "text.secondary",
     fontFamily: `"Open Sans", sans-serif`,

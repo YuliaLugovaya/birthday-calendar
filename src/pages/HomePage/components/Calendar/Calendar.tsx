@@ -64,7 +64,12 @@ export const Calendar: FC = () => {
       ></Button>
       <Slider ref={sliderRef} {...settings}>
         {monthItems.map((month) => (
-          <Month key={month.id} title={month.title} year={month.year} />
+          <Month
+            key={month.id}
+            title={month.title}
+            year={month.year}
+            id={month.id}
+          />
         ))}
       </Slider>
       <Button

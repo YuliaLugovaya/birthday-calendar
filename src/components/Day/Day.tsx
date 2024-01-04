@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { styles } from "./Day.styled";
 import { IDayProps } from "./DayTypes";
 
