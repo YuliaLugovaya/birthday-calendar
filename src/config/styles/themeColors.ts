@@ -9,6 +9,7 @@ export const colors = {
     hover: "#0097a7",
     birthday: "#fbc02d",
     other: "#81c784",
+    greenLight: "#e8f5e9",
     wedding: "#ffab91",
     disabled: "#e0e0e0",
     grey: "#424242",
@@ -23,6 +24,7 @@ declare module "@mui/material/styles" {
       hover: string;
       birthday: string;
       other: string;
+      greenLight: string;
       wedding: string;
       disabled: string;
       grey: string;
@@ -35,6 +37,7 @@ declare module "@mui/material/styles" {
       hover?: string;
       birthday?: string;
       other?: string;
+      greenLight?: string;
       wedding?: string;
       disabled?: string;
       grey?: string;

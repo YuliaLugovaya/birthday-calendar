@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { FC, useRef } from "react";
 import { Box, Button, useMediaQuery } from "@mui/material";
 import { styles } from "./Calendar.styled";
 import { Month } from "components/Month/Month";
