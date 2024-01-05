@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import {
   Box,
   CardMedia,
@@ -7,7 +7,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { styles } from "./PageHeader.styled";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { routes } from "config/routes";
 import burger from "assets/images/png/burger-menu.png";
 import close from "assets/images/png/close.png";

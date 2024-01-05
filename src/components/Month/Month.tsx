@@ -71,7 +71,9 @@ export const Month: FC<IMonthProps> = ({ title, year, id }) => {
         <Box sx={styles.monthWrapper}>
           {emptyCells
             .concat(
-              filteredDays.map((day) => <Day key={day.id} date={day.date} />),
+              filteredDays.map((day) => (
+                <Day key={day.id} date={day.date} month={title} year={year} />
+              )),
             )
             .concat(emptyCellsEnd)}
         </Box>
