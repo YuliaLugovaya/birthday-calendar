@@ -1,10 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
-// import { ballReducer } from "./ball/ballReducer";
+import { editEventReducer } from "./events/eventsReducer";
 // import { taskReducer } from "./task/taskReducer";
 // import { editReducer } from "./edit/editReducer";
 
 const appReducer = combineReducers({
-  // ball: ballReducer,
+  event: editEventReducer,
   // task: taskReducer,
   // edit: editReducer,
 });
