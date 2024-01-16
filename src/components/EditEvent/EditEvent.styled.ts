@@ -46,6 +46,43 @@ export const styles = {
       color: "text.secondary",
     },
   },
+  editEventSave: {
+    width: "200px",
+    p: "20px",
+    mt: "30px",
+    border: "1px solid",
+    borderColor: "color.other",
+    bgcolor: "color.greenLight",
+    color: "text.primary",
+    "&:hover": {
+      bgcolor: "color.other",
+      color: "text.secondary",
+    },
+  },
+  editEventChoice: {
+    width: "300px",
+    heigth: "50px",
+    border: "1px solid",
+    borderColor: "color.accent",
+    borderRadius: "4px",
+    m: "25px 0",
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: "1px solid",
+      borderColor: "color.accent",
+    },
+    "&:hover": {
+      border: "1px solid",
+      borderColor: "color.accent",
+    },
+  },
+  editEventChangeWrapper: {
+    display: "flex",
+    gap: "10px",
+  },
+  editEventChangeContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
   editEventChange: {
     width: "400px",
     border: "1px solid",
@@ -83,8 +120,21 @@ export const styles = {
   },
   editEventPhotoWrapper: {
     display: "flex",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
-    width: "400px",
+    m: "5px 0",
+  },
+  editEventPhotoAdd: {
+    m: "15px 0",
+    color: "color.other",
+    "&:hover": {
+      color: "color.accent",
+      bgcolor: "transparent",
+    },
+  },
+  editEventPhoto: {
+    width: 70,
+    height: 70,
   },
 };

@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import {
+  Avatar,
   Box,
   Button,
   CardMedia,
@@ -75,7 +76,6 @@ export const EditEvent: FC<IEditEventProps> = ({
   const [fileSizeError, setFileSizeError] = useState(false);
   const [photoName, setPhotoName] = useState("");
   const [uploadedPhoto, setUploadedPhoto] = useState("");
-  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
 
   const handleFileUpload = (files: FileList | null) => {
     if (files && files.length > 0) {
@@ -111,7 +111,6 @@ export const EditEvent: FC<IEditEventProps> = ({
     };
     dispatch(updateAdditionalInputs(updatedInputs));
     setFileUploaded(false);
-    setSelectedFiles(null);
   };
 
   return (
@@ -141,7 +140,7 @@ export const EditEvent: FC<IEditEventProps> = ({
           <>
             <TextField
               select
-              sx={styles.editEventChange}
+              sx={styles.editEventChoice}
               value={selectedEvent}
               onChange={(e) => dispatch(addEvent(e.target.value))}
             >
@@ -156,156 +155,163 @@ export const EditEvent: FC<IEditEventProps> = ({
               ))}
             </TextField>
             {selectedEvent === "День рождения" && (
-              <>
-                <TextField
-                  placeholder="Имя (фамилия, имя, отчество)"
-                  value={additionalInputs.name || ""}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "name")
-                  }
-                  sx={styles.editEventChange}
-                  required
-                />
-                <TextField
-                  select
-                  sx={styles.editEventChange}
-                  value={additionalInputs.year || "Выберите год рождения"}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "year")
-                  }
-                >
-                  {years.map((option) => (
-                    <MenuItem
-                      key={option.value}
-                      value={option.value}
-                      disabled={option.disabled}
-                    >
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-                <TextField
-                  placeholder="Телефон"
-                  value={additionalInputs.phone || ""}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "phone")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <FormGroup sx={styles.editEventCheckboxWrapper}>
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="WhatsApp"
-                    checked={additionalInputs.messengers.includes("WhatsApp")}
-                    onChange={(e) => {
-                      const target = e.target as HTMLInputElement;
-                      if (target.checked) {
-                        handleAdditionalInputChange("WhatsApp", "messengers");
-                      }
-                    }}
-                    sx={styles.editEventCheckbox}
+              <Box sx={styles.editEventChangeWrapper}>
+                <Box sx={styles.editEventChangeContainer}>
+                  <TextField
+                    placeholder="Имя (фамилия, имя, отчество)"
+                    value={additionalInputs.name || ""}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "name")
+                    }
+                    sx={styles.editEventChange}
+                    required
                   />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Viber"
-                    checked={additionalInputs.messengers.includes("Viber")}
-                    onChange={(e) => {
-                      const target = e.target as HTMLInputElement;
-                      if (target.checked) {
-                        handleAdditionalInputChange("Viber", "messengers");
-                      }
-                    }}
-                    sx={styles.editEventCheckbox}
+                  <TextField
+                    select
+                    sx={styles.editEventChange}
+                    value={additionalInputs.year || "Выберите год рождения"}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "year")
+                    }
+                  >
+                    {years.map((option) => (
+                      <MenuItem
+                        key={option.value}
+                        value={option.value}
+                        disabled={option.disabled}
+                      >
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                  <TextField
+                    placeholder="Ccылка на социальные сети"
+                    value={additionalInputs.socials}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "socials")
+                    }
+                    sx={styles.editEventChange}
                   />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Telegram"
-                    checked={additionalInputs.messengers.includes("Telegram")}
-                    onChange={(e) => {
-                      const target = e.target as HTMLInputElement;
-                      if (target.checked) {
-                        handleAdditionalInputChange("Telegram", "messengers");
-                      }
-                    }}
-                    sx={styles.editEventCheckbox}
+                  <TextField
+                    placeholder="Телефон"
+                    value={additionalInputs.phone || ""}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "phone")
+                    }
+                    sx={styles.editEventChange}
                   />
-                </FormGroup>
-                <TextField
-                  placeholder="Адрес"
-                  value={additionalInputs.address || ""}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "address")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <TextField
-                  placeholder="Ccылка на социальные сети"
-                  value={additionalInputs.socials}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "socials")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <TextField
-                  placeholder="E-mail"
-                  value={additionalInputs.email}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "email")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <TextField
-                  placeholder="Дополнительная информация"
-                  multiline
-                  value={additionalInputs.textarea}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "textarea")
-                  }
-                  sx={styles.editEventChange}
-                />
-                {fileUploaded && (
-                  <Box sx={styles.editEventPhotoWrapper}>
-                    {uploadedPhoto && (
-                      <img
-                        src={uploadedPhoto}
-                        alt="Uploaded"
-                        width={50}
-                        height={50}
-                      />
-                    )}
-                    <Typography>{photoName}</Typography>
-                    <Button onClick={handleDeletePhoto}>Удалить</Button>
-                  </Box>
-                )}
+                  <FormGroup sx={styles.editEventCheckboxWrapper}>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="WhatsApp"
+                      checked={additionalInputs.messengers.includes("WhatsApp")}
+                      onChange={(e) => {
+                        const target = e.target as HTMLInputElement;
+                        if (target.checked) {
+                          handleAdditionalInputChange("WhatsApp", "messengers");
+                        }
+                      }}
+                      sx={styles.editEventCheckbox}
+                    />
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="Viber"
+                      checked={additionalInputs.messengers.includes("Viber")}
+                      onChange={(e) => {
+                        const target = e.target as HTMLInputElement;
+                        if (target.checked) {
+                          handleAdditionalInputChange("Viber", "messengers");
+                        }
+                      }}
+                      sx={styles.editEventCheckbox}
+                    />
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="Telegram"
+                      checked={additionalInputs.messengers.includes("Telegram")}
+                      onChange={(e) => {
+                        const target = e.target as HTMLInputElement;
+                        if (target.checked) {
+                          handleAdditionalInputChange("Telegram", "messengers");
+                        }
+                      }}
+                      sx={styles.editEventCheckbox}
+                    />
+                  </FormGroup>
+                </Box>
+                <Box sx={styles.editEventChangeContainer}>
+                  <TextField
+                    placeholder="Адрес"
+                    value={additionalInputs.address || ""}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "address")
+                    }
+                    sx={styles.editEventChange}
+                  />
 
-                {!fileUploaded && (
-                  <>
-                    <Button component="label">
-                      Добавить фотографию
-                      <input
-                        type="file"
-                        accept=".jpg, .jpeg, .png"
-                        style={{ display: "none" }}
-                        onChange={(e) => {
-                          handleFileUpload(e.target.files);
-                          setSelectedFiles(e.target.files);
-                        }}
-                      />
-                    </Button>
-                    {fileSizeError && (
-                      <Typography>
-                        Файл больше 5 МБ. Пожалуйста, выберите другой файл.
-                      </Typography>
-                    )}
-                  </>
-                )}
-              </>
+                  <TextField
+                    placeholder="E-mail"
+                    value={additionalInputs.email}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "email")
+                    }
+                    sx={styles.editEventChange}
+                  />
+                  <TextField
+                    placeholder="Дополнительная информация"
+                    multiline
+                    value={additionalInputs.textarea}
+                    onChange={(e) =>
+                      handleAdditionalInputChange(e.target.value, "textarea")
+                    }
+                    sx={styles.editEventChange}
+                  />
+                  {fileUploaded && (
+                    <Box sx={styles.editEventPhotoWrapper}>
+                      {uploadedPhoto && (
+                        <Avatar
+                          alt={additionalInputs.name}
+                          src={uploadedPhoto}
+                          sx={styles.editEventPhoto}
+                        />
+                      )}
+                      <Button
+                        onClick={handleDeletePhoto}
+                        sx={styles.editEventPhotoAdd}
+                      >
+                        Удалить
+                      </Button>
+                    </Box>
+                  )}
+                  {!fileUploaded && (
+                    <>
+                      <Button sx={styles.editEventPhotoAdd} component="label">
+                        Добавить фотографию
+                        <input
+                          type="file"
+                          accept=".jpg, .jpeg, .png"
+                          style={{ display: "none" }}
+                          onChange={(e) => {
+                            handleFileUpload(e.target.files);
+                          }}
+                        />
+                      </Button>
+                      {fileSizeError && (
+                        <Typography>
+                          Файл больше 5 МБ. Пожалуйста, выберите другой файл.
+                        </Typography>
+                      )}
+                    </>
+                  )}
+                </Box>
+              </Box>
             )}
             {selectedEvent === "Свадьба" && <TextField label="Список имен" />}
             {selectedEvent === "Международные праздники" && (
               <TextField label="Название" />
             )}
             {selectedEvent === "Другое" && <TextField label="Название" />}
+            <Button sx={styles.editEventSave}>Сохранить</Button>
           </>
         ) : (
           <>
