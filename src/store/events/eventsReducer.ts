@@ -14,7 +14,10 @@ export const editEventReducer = (
       return {
         ...state,
         isEventAdded: true,
-        selectedEvent: action.payload,
+        additionalInputs: {
+          ...state.additionalInputs,
+          selectedEvent: action.payload,
+        },
       };
     case EditEventActionTypes.UPDATE_ADDITIONAL_INPUTS:
       return {
@@ -23,6 +26,18 @@ export const editEventReducer = (
           ...state.additionalInputs,
           ...action.payload,
         },
+      };
+    case EditEventActionTypes.SAVE_EVENT:
+      return {
+        ...state,
+        allEvents: [...state.allEvents, action.payload],
+      };
+    case EditEventActionTypes.CLEAR_EVENT:
+      return {
+        ...state,
+        isEventAdded: initialState.isEventAdded,
+        // selectedEvent: initialState.selectedEvent,
+        additionalInputs: initialState.additionalInputs,
       };
     default:
       return state;

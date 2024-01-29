@@ -1,12 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { editEventReducer } from "./events/eventsReducer";
-// import { taskReducer } from "./task/taskReducer";
-// import { editReducer } from "./edit/editReducer";
 
 const appReducer = combineReducers({
   event: editEventReducer,
-  // task: taskReducer,
-  // edit: editReducer,
 });
 
 export type RootState = ReturnType<typeof appReducer>;

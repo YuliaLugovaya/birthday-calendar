@@ -17,7 +17,12 @@ import { IEditEventProps } from "./EditEventTypes";
 import close from "assets/images/png/close.png";
 import events from "config/events";
 import { useDispatch, useSelector } from "react-redux";
-import { addEvent, updateAdditionalInputs } from "store/events/eventsActions";
+import {
+  addEvent,
+  updateAdditionalInputs,
+  saveEvent,
+  clearEvent,
+} from "store/events/eventsActions";
 import { AdditionalInputs, EditEventState } from "store/events/eventsTypes";
 import years from "config/years";
 
@@ -44,12 +49,17 @@ export const EditEvent: FC<IEditEventProps> = ({
     (rootReducer: { event: EditEventState }) => rootReducer.event.isEventAdded,
   );
   const selectedEvent = useSelector(
-    (rootReducer: { event: EditEventState }) => rootReducer.event.selectedEvent,
+    (rootReducer: { event: EditEventState }) =>
+      rootReducer.event.additionalInputs.selectedEvent,
   );
 
   const additionalInputs = useSelector(
     (rootReducer: { event: EditEventState }) =>
       rootReducer.event.additionalInputs,
+  );
+
+  const allEvents = useSelector(
+    (rootReducer: { event: EditEventState }) => rootReducer.event.allEvents,
   );
 
   const handleAddEvent = () => {
@@ -70,6 +80,20 @@ export const EditEvent: FC<IEditEventProps> = ({
       };
     }
     dispatch(updateAdditionalInputs(updatedInputs));
+  };
+
+  const handleSaveEvent = () => {
+    const newEvent = {
+      [`${day}${modifiedMonth}`]: additionalInputs,
+    };
+
+    dispatch(saveEvent(newEvent));
+    dispatch(clearEvent());
+  };
+
+  const handleClearEvent = () => {
+    dispatch(clearEvent());
+    toggleDrawer();
   };
 
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -113,6 +137,44 @@ export const EditEvent: FC<IEditEventProps> = ({
     setFileUploaded(false);
   };
 
+  const renderEvent = (event: {
+    [key: string]: { name: string; photo?: string; selectedEvent: string };
+  }) => {
+    const data = Object.keys(event)[0];
+
+    if (data === `${day}${modifiedMonth}`) {
+      return (
+        <Button key={event[data].name}>
+          {event[data].photo ? (
+            <Avatar alt={event[data].name} src={event[data].photo} />
+          ) : (
+            <Box
+              sx={{
+                width: 50,
+                height: 50,
+                borderRadius: "50%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                bgcolor: "color.birthday",
+              }}
+            >
+              <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
+                {event[data].name.charAt(0)}
+              </Typography>
+            </Box>
+          )}
+          <Box>
+            <Typography>{event[data].name}</Typography>
+            <Typography>{event[data].selectedEvent}</Typography>
+          </Box>
+        </Button>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Drawer
       anchor="top"
@@ -126,7 +188,7 @@ export const EditEvent: FC<IEditEventProps> = ({
           component="img"
           image={close}
           alt="Close"
-          onClick={toggleDrawer}
+          onClick={handleClearEvent}
         />
         <Box sx={styles.editEventContant}>
           <Typography sx={styles.editEventTitle}>
@@ -311,10 +373,13 @@ export const EditEvent: FC<IEditEventProps> = ({
               <TextField label="Название" />
             )}
             {selectedEvent === "Другое" && <TextField label="Название" />}
-            <Button sx={styles.editEventSave}>Сохранить</Button>
+            <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
+              Сохранить
+            </Button>
           </>
         ) : (
           <>
+            <Box>{allEvents.map((event) => renderEvent(event))}</Box>
             <Button onClick={handleAddEvent} sx={styles.editEventAdd}>
               Добавить событие
             </Button>

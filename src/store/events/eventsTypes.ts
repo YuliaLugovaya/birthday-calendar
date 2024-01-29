@@ -8,17 +8,23 @@ export interface AdditionalInputs {
   email: string;
   textarea: string;
   photo: string;
+  selectedEvent: string;
+}
+
+export interface AllEvents {
+  [key: string]: AdditionalInputs;
 }
 
 export interface EditEventState {
   isEventAdded: boolean;
-  selectedEvent: string;
+  // selectedEvent: string;
   additionalInputs: AdditionalInputs;
+  allEvents: AllEvents[];
 }
 
 export const initialState: EditEventState = {
   isEventAdded: false,
-  selectedEvent: "",
+  // selectedEvent: "",
   additionalInputs: {
     name: "",
     year: "",
@@ -29,12 +35,16 @@ export const initialState: EditEventState = {
     email: "",
     textarea: "",
     photo: "",
+    selectedEvent: "",
   },
+  allEvents: [],
 };
 
 export enum EditEventActionTypes {
   ADD_EVENT = "ADD_EVENT",
   UPDATE_ADDITIONAL_INPUTS = "UPDATE_ADDITIONAL_INPUTS",
+  SAVE_EVENT = "SAVE_EVENT",
+  CLEAR_EVENT = "CLEAR_EVENT",
 }
 
 export interface AddEventAction {
@@ -47,4 +57,17 @@ export interface UpdateAdditionalInputsAction {
   payload: AdditionalInputs;
 }
 
-export type EditEventAction = AddEventAction | UpdateAdditionalInputsAction;
+export interface SaveEventAction {
+  type: EditEventActionTypes.SAVE_EVENT;
+  payload: AllEvents;
+}
+
+export interface ClearEventAction {
+  type: EditEventActionTypes.CLEAR_EVENT;
+}
+
+export type EditEventAction =
+  | AddEventAction
+  | UpdateAdditionalInputsAction
+  | SaveEventAction
+  | ClearEventAction;
