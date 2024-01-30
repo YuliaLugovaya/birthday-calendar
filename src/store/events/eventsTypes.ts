@@ -1,10 +1,10 @@
 export interface AdditionalInputs {
   name: string;
   year: string;
-  phone: string[];
+  phone: string;
   messengers: string[];
   address: string;
-  socials: string[];
+  socials: string;
   email: string;
   textarea: string;
   photo: string;
@@ -28,10 +28,10 @@ export const initialState: EditEventState = {
   additionalInputs: {
     name: "",
     year: "",
-    phone: [],
+    phone: "",
     messengers: [],
     address: "",
-    socials: [],
+    socials: "",
     email: "",
     textarea: "",
     photo: "",

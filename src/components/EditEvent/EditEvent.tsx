@@ -25,6 +25,7 @@ import {
 } from "store/events/eventsActions";
 import { AdditionalInputs, EditEventState } from "store/events/eventsTypes";
 import years from "config/years";
+import { EventModal } from "components/EventModal";
 
 export const EditEvent: FC<IEditEventProps> = ({
   isDrawerOpen,
@@ -137,38 +138,101 @@ export const EditEvent: FC<IEditEventProps> = ({
     setFileUploaded(false);
   };
 
+  const [openModal, setOpenModal] = useState<{ [eventName: string]: boolean }>(
+    {},
+  );
+  const modalOpen = (eventName: string) => {
+    setOpenModal((prev) => ({
+      ...prev,
+      [eventName]: true,
+    }));
+  };
+
+  const modalClose = (eventName: string) => {
+    setOpenModal((prev) => ({
+      ...prev,
+      [eventName]: false,
+    }));
+  };
+
   const renderEvent = (event: {
-    [key: string]: { name: string; photo?: string; selectedEvent: string };
+    [key: string]: {
+      name: string;
+      year?: string;
+      phone?: string;
+      messengers?: string[];
+      address?: string;
+      socials?: string;
+      email?: string;
+      textarea?: string;
+      photo?: string;
+      selectedEvent: string;
+    };
   }) => {
     const data = Object.keys(event)[0];
 
     if (data === `${day}${modifiedMonth}`) {
       return (
-        <Button key={event[data].name}>
-          {event[data].photo ? (
-            <Avatar alt={event[data].name} src={event[data].photo} />
-          ) : (
-            <Box
-              sx={{
-                width: 50,
-                height: 50,
-                borderRadius: "50%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                bgcolor: "color.birthday",
-              }}
-            >
-              <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
-                {event[data].name.charAt(0)}
-              </Typography>
+        <Box key={event[data].name}>
+          <Button
+            onClick={() => modalOpen(event[data].name)}
+            sx={{
+              ...styles.editAddedEvents,
+              border: "1px solid",
+              borderColor: "color.other",
+              bgcolor: event[data].selectedEvent
+                ? "color.yellowLight"
+                : "color.other",
+              color: "text.primary",
+              "&:hover": {
+                bgcolor: "color.other",
+                color: "text.secondary",
+              },
+            }}
+          >
+            {event[data].photo ? (
+              <Avatar alt={event[data].name} src={event[data].photo} />
+            ) : (
+              <Box
+                sx={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  bgcolor: event[data].selectedEvent
+                    ? "color.birthday"
+                    : "color.other",
+                }}
+              >
+                <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
+                  {event[data].name.charAt(0)}
+                </Typography>
+              </Box>
+            )}
+            <Box>
+              <Typography>{event[data].name}</Typography>
+              <Typography>{event[data].selectedEvent}</Typography>
             </Box>
-          )}
-          <Box>
-            <Typography>{event[data].name}</Typography>
-            <Typography>{event[data].selectedEvent}</Typography>
-          </Box>
-        </Button>
+          </Button>
+          <EventModal
+            openModal={openModal[event[data].name]}
+            modalClose={() => modalClose(event[data].name)}
+            name={event[data].name}
+            year={event[data].year}
+            phone={event[data].phone}
+            messengers={event[data].messengers}
+            address={event[data].address}
+            socials={event[data].socials}
+            email={event[data].email}
+            textarea={event[data].textarea}
+            photo={event[data].photo}
+            selectedEvent={event[data].selectedEvent}
+            day={day}
+            modifiedMonth={modifiedMonth}
+          />
+        </Box>
       );
     } else {
       return null;
@@ -378,12 +442,12 @@ export const EditEvent: FC<IEditEventProps> = ({
             </Button>
           </>
         ) : (
-          <>
+          <Box sx={styles.editAllEvents}>
             <Box>{allEvents.map((event) => renderEvent(event))}</Box>
             <Button onClick={handleAddEvent} sx={styles.editEventAdd}>
               Добавить событие
             </Button>
-          </>
+          </Box>
         )}
       </Box>
     </Drawer>

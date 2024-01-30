@@ -10,13 +10,8 @@ const events = [
     disabled: false,
   },
   {
-    value: "Свадьба",
-    label: "Свадьба",
-    disabled: false,
-  },
-  {
-    value: "Международные праздники",
-    label: "Международные праздники",
+    value: "Международный праздник",
+    label: "Международный праздник",
     disabled: false,
   },
   {

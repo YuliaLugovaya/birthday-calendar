@@ -34,18 +34,6 @@ export const styles = {
   editEventTitle: {
     fontSize: "2rem",
   },
-  editEventAdd: {
-    width: "400px",
-    p: "20px",
-    border: "1px solid",
-    borderColor: "color.other",
-    bgcolor: "color.greenLight",
-    color: "text.primary",
-    "&:hover": {
-      bgcolor: "color.other",
-      color: "text.secondary",
-    },
-  },
   editEventSave: {
     width: "200px",
     p: "20px",
@@ -136,5 +124,29 @@ export const styles = {
   editEventPhoto: {
     width: 70,
     height: 70,
+  },
+  editAllEvents: {
+    display: "flex",
+    flexDirection: "row",
+    alignSelf: "start",
+  },
+  editAddedEvents: {
+    width: "300px",
+    height: "200px",
+    p: "20px",
+    mr: "20px",
+  },
+  editEventAdd: {
+    width: "300px",
+    height: "200px",
+    p: "20px",
+    border: "1px solid",
+    borderColor: "color.other",
+    bgcolor: "color.greenLight",
+    color: "text.primary",
+    "&:hover": {
+      bgcolor: "color.other",
+      color: "text.secondary",
+    },
   },
 };
