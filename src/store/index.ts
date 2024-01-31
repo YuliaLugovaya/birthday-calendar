@@ -6,7 +6,7 @@ import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import rootReducer, { RootState } from "./rootReducer";
 import localStorageMiddleware from "./localStorageMiddleware";
 
-const storedState = localStorage.getItem("adventCalendar");
+const storedState = localStorage.getItem("eventCalendar");
 const initialState: RootState | undefined = storedState
   ? JSON.parse(storedState)
   : undefined;

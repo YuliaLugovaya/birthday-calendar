@@ -39,11 +39,11 @@ export const styles = {
     p: "20px",
     mt: "30px",
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
     bgcolor: "color.greenLight",
     color: "text.primary",
     "&:hover": {
-      bgcolor: "color.other",
+      bgcolor: "color.green",
       color: "text.secondary",
     },
   },
@@ -51,16 +51,16 @@ export const styles = {
     width: "300px",
     heigth: "50px",
     border: "1px solid",
-    borderColor: "color.accent",
+    borderColor: "color.blue",
     borderRadius: "4px",
     m: "25px 0",
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
       border: "1px solid",
-      borderColor: "color.accent",
+      borderColor: "color.blue",
     },
     "&:hover": {
       border: "1px solid",
-      borderColor: "color.accent",
+      borderColor: "color.blue",
     },
   },
   editEventChangeWrapper: {
@@ -74,16 +74,16 @@ export const styles = {
   editEventChange: {
     width: "400px",
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
     borderRadius: "4px",
     m: "5px 0",
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
       border: "1px solid",
-      borderColor: "color.other",
+      borderColor: "color.green",
     },
     "&:hover": {
       border: "1px solid",
-      borderColor: "color.other",
+      borderColor: "color.green",
     },
   },
   editEventCheckboxWrapper: {
@@ -115,9 +115,9 @@ export const styles = {
   },
   editEventPhotoAdd: {
     m: "15px 0",
-    color: "color.other",
+    color: "color.green",
     "&:hover": {
-      color: "color.accent",
+      color: "color.blue",
       bgcolor: "transparent",
     },
   },
@@ -141,11 +141,11 @@ export const styles = {
     height: "200px",
     p: "20px",
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
     bgcolor: "color.greenLight",
     color: "text.primary",
     "&:hover": {
-      bgcolor: "color.other",
+      bgcolor: "color.green",
       color: "text.secondary",
     },
   },

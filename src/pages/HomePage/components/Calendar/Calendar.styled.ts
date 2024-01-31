@@ -37,14 +37,14 @@ export const styles = {
     },
   },
   calendarPrev: {
-    bgcolor: "color.background",
+    bgcolor: "color.blueLight",
     borderRadius: "50px",
     width: "50px",
     height: "50px",
     minWidth: "0px",
   },
   calendarNext: {
-    bgcolor: "color.background",
+    bgcolor: "color.blueLight",
     borderRadius: "50px",
     width: "50px",
     height: "50px",

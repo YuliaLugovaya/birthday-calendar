@@ -38,35 +38,35 @@ export const theme = () =>
             letterSpacing: 0,
             textTransform: "none",
             "&.primary": {
-              backgroundColor: colors.color.accent,
+              backgroundColor: colors.color.blue,
               color: colors.text.secondary,
               "&:hover": {
-                backgroundColor: colors.color.hover,
+                backgroundColor: colors.color.blueDark,
               },
               "&:focus": {
-                backgroundColor: colors.color.hover,
+                backgroundColor: colors.color.blueDark,
               },
               "&:active": {
-                backgroundColor: colors.color.hover,
+                backgroundColor: colors.color.blueDark,
               },
               "&:disabled": {
-                backgroundColor: colors.color.background,
+                backgroundColor: colors.color.blueLight,
               },
             },
             "&.secondary": {
-              backgroundColor: colors.color.other,
+              backgroundColor: colors.color.green,
               color: colors.text.secondary,
               "&:hover": {
-                backgroundColor: colors.color.hover,
+                backgroundColor: colors.color.blueDark,
               },
               "&:focus": {
-                backgroundColor: colors.color.hover,
+                backgroundColor: colors.color.blueDark,
               },
               "&:active": {
-                backgroundColor: colors.color.hover,
+                backgroundColor: colors.color.blueDark,
               },
               "&:disabled": {
-                backgroundColor: colors.color.background,
+                backgroundColor: colors.color.blueLight,
               },
             },
           },

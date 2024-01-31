@@ -1,17 +1,17 @@
 export const colors = {
   text: {
-    primary: "#000000",
+    primary: "#252525",
     secondary: "#FFFFFF",
   },
   color: {
-    background: "#e0f7fa",
-    accent: "#26c6da",
-    hover: "#0097a7",
-    birthday: "#fbc02d",
-    other: "#81c784",
+    blueLight: "#e0f7fa",
+    blue: "#26c6da",
+    blueDark: "#0097a7",
+    yellow: "#fbc02d",
+    green: "#81c784",
     greenLight: "#e8f5e9",
     yellowLight: "#fffde7",
-    wedding: "#ffab91",
+    coral: "#ffab91",
     disabled: "#e0e0e0",
     grey: "#424242",
   },
@@ -20,28 +20,28 @@ export const colors = {
 declare module "@mui/material/styles" {
   interface Palette {
     color: {
-      background: string;
-      accent: string;
-      hover: string;
-      birthday: string;
-      other: string;
+      blueLight: string;
+      blue: string;
+      blueDark: string;
+      yellow: string;
+      green: string;
       greenLight: string;
       yellowLight: string;
-      wedding: string;
+      coral: string;
       disabled: string;
       grey: string;
     };
   }
   interface PaletteOptions {
     color?: {
-      background?: string;
-      accent?: string;
-      hover?: string;
-      birthday?: string;
-      other?: string;
+      blueLight?: string;
+      blue?: string;
+      blueDark?: string;
+      yellow?: string;
+      green?: string;
       greenLight?: string;
       yellowLight?: string;
-      wedding?: string;
+      coral?: string;
       disabled?: string;
       grey?: string;
     };

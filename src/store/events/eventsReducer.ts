@@ -36,7 +36,6 @@ export const editEventReducer = (
       return {
         ...state,
         isEventAdded: initialState.isEventAdded,
-        // selectedEvent: initialState.selectedEvent,
         additionalInputs: initialState.additionalInputs,
       };
     default:

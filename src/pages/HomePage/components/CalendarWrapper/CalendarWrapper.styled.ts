@@ -19,8 +19,8 @@ export const styles = {
     m: "0 auto",
     fontSize: "1rem",
   },
-  calendarAccent: {
-    color: "color.birthday",
+  calendarblue: {
+    color: "color.yellow",
     fontSize: "3rem",
     lineHeight: "1.3",
   },

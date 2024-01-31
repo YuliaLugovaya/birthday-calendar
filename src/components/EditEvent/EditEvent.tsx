@@ -85,7 +85,7 @@ export const EditEvent: FC<IEditEventProps> = ({
 
   const handleSaveEvent = () => {
     const newEvent = {
-      [`${day}${modifiedMonth}`]: additionalInputs,
+      [`${day}${month}`]: additionalInputs,
     };
 
     dispatch(saveEvent(newEvent));
@@ -170,8 +170,7 @@ export const EditEvent: FC<IEditEventProps> = ({
     };
   }) => {
     const data = Object.keys(event)[0];
-
-    if (data === `${day}${modifiedMonth}`) {
+    if (data === `${day}${month}`) {
       return (
         <Box key={event[data].name}>
           <Button
@@ -179,13 +178,13 @@ export const EditEvent: FC<IEditEventProps> = ({
             sx={{
               ...styles.editAddedEvents,
               border: "1px solid",
-              borderColor: "color.other",
+              borderColor: "color.green",
               bgcolor: event[data].selectedEvent
                 ? "color.yellowLight"
-                : "color.other",
+                : "color.green",
               color: "text.primary",
               "&:hover": {
-                bgcolor: "color.other",
+                bgcolor: "color.green",
                 color: "text.secondary",
               },
             }}
@@ -202,8 +201,8 @@ export const EditEvent: FC<IEditEventProps> = ({
                   justifyContent: "center",
                   alignItems: "center",
                   bgcolor: event[data].selectedEvent
-                    ? "color.birthday"
-                    : "color.other",
+                    ? "color.yellow"
+                    : "color.green",
                 }}
               >
                 <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>

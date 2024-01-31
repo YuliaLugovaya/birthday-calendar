@@ -3,7 +3,7 @@ export const styles = {
     display: "flex",
     justifyContent: "space-between",
     p: "15px 50px",
-    bgcolor: "color.hover",
+    bgcolor: "color.blueDark",
     color: "text.secondary",
     fontFamily: `"Open Sans", sans-serif`,
   },
@@ -12,7 +12,7 @@ export const styles = {
     textDecoration: "none",
     transition: "ease 0.3s",
     "&:hover": {
-      color: "color.other",
+      color: "color.green",
       transition: "ease 0.3s",
     },
   },

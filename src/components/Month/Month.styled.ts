@@ -11,19 +11,19 @@ export const styles = {
   },
   monthTitleElement: {
     fontSize: "2rem",
-    color: "color.hover",
+    color: "color.blueDark",
   },
   monthContent: {
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
   },
   monthWeek: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
     justifyContent: "space-between",
-    bgcolor: "color.other",
+    bgcolor: "color.green",
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
     color: "text.secondary",
   },
   monthDay: {
@@ -41,7 +41,7 @@ export const styles = {
   },
   monthTable: {
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
   },
   monthEmptyCell: {
     display: "flex",
@@ -53,7 +53,7 @@ export const styles = {
     p: "5px",
     borderRadius: "0px",
     border: "1px solid",
-    borderColor: "color.other",
+    borderColor: "color.green",
     lineHeight: "1",
     color: "color.disabled",
   },

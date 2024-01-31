@@ -46,7 +46,7 @@ export const EventModal: FC<IEventModalProps> = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              bgcolor: selectedEvent ? "color.birthday" : "color.other",
+              bgcolor: selectedEvent ? "color.yellow" : "color.green",
             }}
           >
             <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>

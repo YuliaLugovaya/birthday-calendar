@@ -20,10 +20,10 @@ export const styles = {
       xs: "1rem",
       md: "1.5rem",
     },
-    color: "color.accent",
+    color: "color.blue",
     transition: "ease 0.3s",
     "&:hover": {
-      color: "color.hover",
+      color: "color.blueDark",
       transition: "ease 0.3s",
     },
   },
@@ -33,10 +33,10 @@ export const styles = {
   },
   headerLinks: {
     fontSize: "1.1rem",
-    color: "color.accent",
+    color: "color.blue",
     transition: "ease 0.3s",
     "&:hover": {
-      color: "color.hover",
+      color: "color.blueDark",
       transition: "ease 0.3s",
     },
   },
@@ -68,7 +68,7 @@ export const styles = {
   burgerMenu: {
     "& .MuiDrawer-paperAnchorRight": {
       p: "20px",
-      bgcolor: "color.accent",
+      bgcolor: "color.blue",
       width: "80vw",
     },
   },

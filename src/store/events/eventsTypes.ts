@@ -17,14 +17,12 @@ export interface AllEvents {
 
 export interface EditEventState {
   isEventAdded: boolean;
-  // selectedEvent: string;
   additionalInputs: AdditionalInputs;
   allEvents: AllEvents[];
 }
 
 export const initialState: EditEventState = {
   isEventAdded: false,
-  // selectedEvent: "",
   additionalInputs: {
     name: "",
     year: "",
