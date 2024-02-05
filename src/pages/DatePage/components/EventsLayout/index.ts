@@ -1,0 +1,1 @@
+export { EventsLayout } from "./EventsLayout";

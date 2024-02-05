@@ -6,6 +6,8 @@ import {
   AllEvents,
   SaveEventAction,
   ClearEventAction,
+  SelectDayAction,
+  SpecificDay,
 } from "./eventsTypes";
 
 export const addEvent = (payload: string): AddEventAction => {
@@ -20,6 +22,13 @@ export const updateAdditionalInputs = (
 ): UpdateAdditionalInputsAction => {
   return {
     type: EditEventActionTypes.UPDATE_ADDITIONAL_INPUTS,
+    payload,
+  };
+};
+
+export const selectDay = (payload: SpecificDay): SelectDayAction => {
+  return {
+    type: EditEventActionTypes.SELECT_DAY,
     payload,
   };
 };

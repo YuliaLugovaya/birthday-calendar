@@ -27,6 +27,14 @@ export const editEventReducer = (
           ...action.payload,
         },
       };
+    case EditEventActionTypes.SELECT_DAY:
+      return {
+        ...state,
+        specificDay: {
+          ...state.specificDay,
+          ...action.payload,
+        },
+      };
     case EditEventActionTypes.SAVE_EVENT:
       return {
         ...state,
@@ -37,6 +45,7 @@ export const editEventReducer = (
         ...state,
         isEventAdded: initialState.isEventAdded,
         additionalInputs: initialState.additionalInputs,
+        specificDay: initialState.specificDay,
       };
     default:
       return state;
