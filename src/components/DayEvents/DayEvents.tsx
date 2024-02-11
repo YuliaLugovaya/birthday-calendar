@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {
   Avatar,
   Box,
@@ -22,6 +22,8 @@ import {
 import { AdditionalInputs, EditEventState } from "store/events/eventsTypes";
 import years from "config/years";
 import { EventModal } from "components/EventModal";
+import { Outlet, useNavigate } from "react-router-dom";
+import { routes } from "config/routes";
 
 export const DayEvents = () => {
   const dispatch = useDispatch();
@@ -57,8 +59,12 @@ export const DayEvents = () => {
   modifiedMonth =
     modifiedMonth.charAt(0).toLowerCase() + modifiedMonth.slice(1);
 
+  const navigate = useNavigate();
   const handleAddEvent = () => {
     dispatch(addEvent("Выберите событие"));
+    navigate(
+      `${routes.home.root}/${routes.home.date.root}/${specificDay.day}/${routes.home.date.addEvent}`,
+    );
   };
 
   const handleAdditionalInputChange = (value: string, key: string) => {
@@ -230,184 +236,11 @@ export const DayEvents = () => {
   return (
     <Box sx={styles.editEventWrapper}>
       {isEventAdded ? (
-        <>
-          <TextField
-            select
-            sx={styles.editEventChoice}
-            value={selectedEvent}
-            onChange={(e) => dispatch(addEvent(e.target.value))}
-          >
-            {events.map((option) => (
-              <MenuItem
-                key={option.value}
-                value={option.value}
-                disabled={option.disabled}
-              >
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          {selectedEvent === "День рождения" && (
-            <Box sx={styles.editEventChangeWrapper}>
-              <Box sx={styles.editEventChangeContainer}>
-                <TextField
-                  placeholder="Имя (фамилия, имя, отчество)"
-                  value={additionalInputs.name || ""}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "name")
-                  }
-                  sx={styles.editEventChange}
-                  required
-                />
-                <TextField
-                  select
-                  sx={styles.editEventChange}
-                  value={additionalInputs.year || "Выберите год рождения"}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "year")
-                  }
-                >
-                  {years.map((option) => (
-                    <MenuItem
-                      key={option.value}
-                      value={option.value}
-                      disabled={option.disabled}
-                    >
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-                <TextField
-                  placeholder="Ccылка на социальные сети"
-                  value={additionalInputs.socials}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "socials")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <TextField
-                  placeholder="Телефон"
-                  value={additionalInputs.phone || ""}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "phone")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <FormGroup sx={styles.editEventCheckboxWrapper}>
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="WhatsApp"
-                    checked={additionalInputs.messengers.includes("WhatsApp")}
-                    onChange={(e) => {
-                      const target = e.target as HTMLInputElement;
-                      if (target.checked) {
-                        handleAdditionalInputChange("WhatsApp", "messengers");
-                      }
-                    }}
-                    sx={styles.editEventCheckbox}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Viber"
-                    checked={additionalInputs.messengers.includes("Viber")}
-                    onChange={(e) => {
-                      const target = e.target as HTMLInputElement;
-                      if (target.checked) {
-                        handleAdditionalInputChange("Viber", "messengers");
-                      }
-                    }}
-                    sx={styles.editEventCheckbox}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Telegram"
-                    checked={additionalInputs.messengers.includes("Telegram")}
-                    onChange={(e) => {
-                      const target = e.target as HTMLInputElement;
-                      if (target.checked) {
-                        handleAdditionalInputChange("Telegram", "messengers");
-                      }
-                    }}
-                    sx={styles.editEventCheckbox}
-                  />
-                </FormGroup>
-              </Box>
-              <Box sx={styles.editEventChangeContainer}>
-                <TextField
-                  placeholder="Адрес"
-                  value={additionalInputs.address || ""}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "address")
-                  }
-                  sx={styles.editEventChange}
-                />
-
-                <TextField
-                  placeholder="E-mail"
-                  value={additionalInputs.email}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "email")
-                  }
-                  sx={styles.editEventChange}
-                />
-                <TextField
-                  placeholder="Дополнительная информация"
-                  multiline
-                  value={additionalInputs.textarea}
-                  onChange={(e) =>
-                    handleAdditionalInputChange(e.target.value, "textarea")
-                  }
-                  sx={styles.editEventChange}
-                />
-                {fileUploaded && (
-                  <Box sx={styles.editEventPhotoWrapper}>
-                    {uploadedPhoto && (
-                      <Avatar
-                        alt={additionalInputs.name}
-                        src={uploadedPhoto}
-                        sx={styles.editEventPhoto}
-                      />
-                    )}
-                    <Button
-                      onClick={handleDeletePhoto}
-                      sx={styles.editEventPhotoAdd}
-                    >
-                      Удалить
-                    </Button>
-                  </Box>
-                )}
-                {!fileUploaded && (
-                  <>
-                    <Button sx={styles.editEventPhotoAdd} component="label">
-                      Добавить фотографию
-                      <input
-                        type="file"
-                        accept=".jpg, .jpeg, .png"
-                        style={{ display: "none" }}
-                        onChange={(e) => {
-                          handleFileUpload(e.target.files);
-                        }}
-                      />
-                    </Button>
-                    {fileSizeError && (
-                      <Typography>
-                        Файл больше 5 МБ. Пожалуйста, выберите другой файл.
-                      </Typography>
-                    )}
-                  </>
-                )}
-              </Box>
-            </Box>
-          )}
-          {selectedEvent === "Свадьба" && <TextField label="Список имен" />}
-          {selectedEvent === "Международные праздники" && (
-            <TextField label="Название" />
-          )}
-          {selectedEvent === "Другое" && <TextField label="Название" />}
-          <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
-            Сохранить
-          </Button>
-        </>
+        <Box>
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
+        </Box>
       ) : (
         <Box sx={styles.editAllEvents}>
           <Box>{allEvents.map((event) => renderEvent(event))}</Box>

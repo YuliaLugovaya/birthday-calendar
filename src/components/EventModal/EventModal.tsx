@@ -1,8 +1,21 @@
 import React, { FC } from "react";
-import { Typography, Box, Modal, IconButton, Avatar } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Modal,
+  IconButton,
+  Avatar,
+  Button,
+} from "@mui/material";
 import { ReactComponent as CloseIcon } from "assets/svg/icon_close.svg";
 import { styles } from "./EventModal.styled";
 import { IEventModalProps } from "./EventModalTypes";
+import { routes } from "config/routes";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
+import { EditEventState } from "store/events/eventsTypes";
+import { isEventAdded } from "store/events/eventsActions";
 
 export const EventModal: FC<IEventModalProps> = ({
   openModal,
@@ -20,6 +33,18 @@ export const EventModal: FC<IEventModalProps> = ({
   day,
   modifiedMonth,
 }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const specificDay = useSelector(
+  //   (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
+  // );
+  const handleEditEvent = () => {
+    dispatch(isEventAdded());
+    modalClose();
+    navigate(
+      `${routes.home.root}/${routes.home.date.root}/${day}/${routes.home.date.editEvent}`,
+    );
+  };
   return (
     <Modal
       open={openModal || false}
@@ -93,14 +118,7 @@ export const EventModal: FC<IEventModalProps> = ({
         {textarea && (
           <Typography>Дополнительная информация: {textarea}</Typography>
         )}
-        {/* <Box>
-          <Typography>{selectedEvent}</Typography>
-        </Box> */}
-        {/* <Link to={routes.home.tree}>
-              <Button sx={styles.modalButton} className="secondary">
-                Нарядить новогоднюю ёлочку
-              </Button>
-            </Link> */}
+        <Button onClick={handleEditEvent}>Редактировать</Button>
       </Box>
     </Modal>
   );

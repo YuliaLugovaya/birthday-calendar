@@ -47,6 +47,17 @@ export const editEventReducer = (
         additionalInputs: initialState.additionalInputs,
         specificDay: initialState.specificDay,
       };
+    case EditEventActionTypes.CLEAR_SPECIFIC_EVENT:
+      return {
+        ...state,
+        isEventAdded: initialState.isEventAdded,
+        additionalInputs: initialState.additionalInputs,
+      };
+    case EditEventActionTypes.IS_EVENT_ADDED:
+      return {
+        ...state,
+        isEventAdded: true,
+      };
     default:
       return state;
   }

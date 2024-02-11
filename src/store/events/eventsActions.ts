@@ -6,8 +6,10 @@ import {
   AllEvents,
   SaveEventAction,
   ClearEventAction,
+  ClearSpecificEventAction,
   SelectDayAction,
   SpecificDay,
+  IsEventAddedAction,
 } from "./eventsTypes";
 
 export const addEvent = (payload: string): AddEventAction => {
@@ -43,5 +45,17 @@ export const saveEvent = (payload: AllEvents): SaveEventAction => {
 export const clearEvent = (): ClearEventAction => {
   return {
     type: EditEventActionTypes.CLEAR_EVENT,
+  };
+};
+
+export const clearSpecificEvent = (): ClearSpecificEventAction => {
+  return {
+    type: EditEventActionTypes.CLEAR_SPECIFIC_EVENT,
+  };
+};
+
+export const isEventAdded = (): IsEventAddedAction => {
+  return {
+    type: EditEventActionTypes.IS_EVENT_ADDED,
   };
 };

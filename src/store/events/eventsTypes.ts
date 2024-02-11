@@ -55,7 +55,9 @@ export enum EditEventActionTypes {
   UPDATE_ADDITIONAL_INPUTS = "UPDATE_ADDITIONAL_INPUTS",
   SAVE_EVENT = "SAVE_EVENT",
   CLEAR_EVENT = "CLEAR_EVENT",
+  CLEAR_SPECIFIC_EVENT = "CLEAR_SPECIFIC_EVENT",
   SELECT_DAY = "SELECT_DAY",
+  IS_EVENT_ADDED = "IS_EVENT_ADDED",
 }
 
 export interface AddEventAction {
@@ -82,9 +84,19 @@ export interface ClearEventAction {
   type: EditEventActionTypes.CLEAR_EVENT;
 }
 
+export interface ClearSpecificEventAction {
+  type: EditEventActionTypes.CLEAR_SPECIFIC_EVENT;
+}
+
+export interface IsEventAddedAction {
+  type: EditEventActionTypes.IS_EVENT_ADDED;
+}
+
 export type EditEventAction =
   | AddEventAction
   | UpdateAdditionalInputsAction
   | SaveEventAction
   | ClearEventAction
-  | SelectDayAction;
+  | ClearSpecificEventAction
+  | SelectDayAction
+  | IsEventAddedAction;

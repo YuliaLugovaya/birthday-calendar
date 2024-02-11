@@ -4,8 +4,8 @@ export const routes = {
     date: {
       root: "date",
       day: ":day",
-      addEvent: "addEvent",
-      editEvent: "editEvent",
+      addEvent: "add-event",
+      editEvent: "edit-event",
     },
     allEvents: "all-events",
   },
