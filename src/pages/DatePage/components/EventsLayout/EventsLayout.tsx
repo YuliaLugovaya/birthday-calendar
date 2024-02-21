@@ -4,7 +4,7 @@ import { styles } from "./EventsLayout.styled";
 import { IEventsLayoutProps } from "./EventsLayoutTypes";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Outlet } from "react-router-dom";
-import { clearEvent } from "store/events/eventsActions";
+import { clearEvent, clearSpecificEvent } from "store/events/eventsActions";
 import close from "assets/images/png/close.png";
 import { useDispatch, useSelector } from "react-redux";
 import { EditEventState } from "store/events/eventsTypes";
@@ -20,6 +20,7 @@ export const EventsLayout: FC<IEventsLayoutProps> = ({
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const handleClearEvent = () => {
     dispatch(clearEvent());
+    dispatch(clearSpecificEvent());
     toggleDrawer();
     navigate(`${routes.home.root}`);
   };

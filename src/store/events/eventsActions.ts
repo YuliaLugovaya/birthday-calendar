@@ -10,6 +10,10 @@ import {
   SelectDayAction,
   SpecificDay,
   IsEventAddedAction,
+  UpdateEventAction,
+  SelectEventAction,
+  SpecificEvent,
+  ClearSelectEventAction,
 } from "./eventsTypes";
 
 export const addEvent = (payload: string): AddEventAction => {
@@ -28,9 +32,23 @@ export const updateAdditionalInputs = (
   };
 };
 
+export const updateEvent = (payload: AllEvents): UpdateEventAction => {
+  return {
+    type: EditEventActionTypes.UPDATE_EVENT,
+    payload,
+  };
+};
+
 export const selectDay = (payload: SpecificDay): SelectDayAction => {
   return {
     type: EditEventActionTypes.SELECT_DAY,
+    payload,
+  };
+};
+
+export const selectEvent = (payload: SpecificEvent): SelectEventAction => {
+  return {
+    type: EditEventActionTypes.SELECT_EVENT,
     payload,
   };
 };
@@ -51,6 +69,12 @@ export const clearEvent = (): ClearEventAction => {
 export const clearSpecificEvent = (): ClearSpecificEventAction => {
   return {
     type: EditEventActionTypes.CLEAR_SPECIFIC_EVENT,
+  };
+};
+
+export const clearSelectEvent = (): ClearSelectEventAction => {
+  return {
+    type: EditEventActionTypes.CLEAR_SELECT_EVENT,
   };
 };
 

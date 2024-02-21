@@ -18,8 +18,13 @@ import {
   updateAdditionalInputs,
   saveEvent,
   clearEvent,
+  selectEvent,
 } from "store/events/eventsActions";
-import { AdditionalInputs, EditEventState } from "store/events/eventsTypes";
+import {
+  AdditionalInputs,
+  EditEventState,
+  SpecificDay,
+} from "store/events/eventsTypes";
 import years from "config/years";
 import { EventModal } from "components/EventModal";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -165,11 +170,18 @@ export const DayEvents = () => {
     };
   }) => {
     const data = Object.keys(event)[0];
+    const handleSelectEvent = () => {
+      const specificEvent = {
+        [`${data}`]: event[data].name,
+      };
+      dispatch(selectEvent(specificEvent));
+      modalOpen(event[data].name);
+    };
     if (data === `${specificDay.day}${specificDay.month}`) {
       return (
         <Box key={event[data].name}>
           <Button
-            onClick={() => modalOpen(event[data].name)}
+            onClick={handleSelectEvent}
             sx={{
               ...styles.editAddedEvents,
               border: "1px solid",

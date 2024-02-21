@@ -17,6 +17,10 @@ export interface SpecificDay {
   year: string;
 }
 
+export interface SpecificEvent {
+  [key: string]: string;
+}
+
 export interface AllEvents {
   [key: string]: AdditionalInputs;
 }
@@ -26,6 +30,7 @@ export interface EditEventState {
   additionalInputs: AdditionalInputs;
   allEvents: AllEvents[];
   specificDay: SpecificDay;
+  specificEvent: SpecificEvent[];
 }
 
 export const initialState: EditEventState = {
@@ -48,6 +53,7 @@ export const initialState: EditEventState = {
     month: "",
     year: "",
   },
+  specificEvent: [],
 };
 
 export enum EditEventActionTypes {
@@ -58,6 +64,9 @@ export enum EditEventActionTypes {
   CLEAR_SPECIFIC_EVENT = "CLEAR_SPECIFIC_EVENT",
   SELECT_DAY = "SELECT_DAY",
   IS_EVENT_ADDED = "IS_EVENT_ADDED",
+  UPDATE_EVENT = "UPDATE_EVENT",
+  SELECT_EVENT = "SELECT_EVENT",
+  CLEAR_SELECT_EVENT = "CLEAR_SELECT_EVENT",
 }
 
 export interface AddEventAction {
@@ -70,9 +79,19 @@ export interface UpdateAdditionalInputsAction {
   payload: AdditionalInputs;
 }
 
+export interface UpdateEventAction {
+  type: EditEventActionTypes.UPDATE_EVENT;
+  payload: AllEvents;
+}
+
 export interface SelectDayAction {
   type: EditEventActionTypes.SELECT_DAY;
   payload: SpecificDay;
+}
+
+export interface SelectEventAction {
+  type: EditEventActionTypes.SELECT_EVENT;
+  payload: SpecificEvent;
 }
 
 export interface SaveEventAction {
@@ -88,6 +107,10 @@ export interface ClearSpecificEventAction {
   type: EditEventActionTypes.CLEAR_SPECIFIC_EVENT;
 }
 
+export interface ClearSelectEventAction {
+  type: EditEventActionTypes.CLEAR_SELECT_EVENT;
+}
+
 export interface IsEventAddedAction {
   type: EditEventActionTypes.IS_EVENT_ADDED;
 }
@@ -99,4 +122,7 @@ export type EditEventAction =
   | ClearEventAction
   | ClearSpecificEventAction
   | SelectDayAction
-  | IsEventAddedAction;
+  | IsEventAddedAction
+  | UpdateEventAction
+  | SelectEventAction
+  | ClearSelectEventAction;

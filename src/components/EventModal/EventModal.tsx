@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { EditEventState } from "store/events/eventsTypes";
-import { isEventAdded } from "store/events/eventsActions";
+import { clearSelectEvent, isEventAdded } from "store/events/eventsActions";
 
 export const EventModal: FC<IEventModalProps> = ({
   openModal,
@@ -45,10 +45,14 @@ export const EventModal: FC<IEventModalProps> = ({
       `${routes.home.root}/${routes.home.date.root}/${day}/${routes.home.date.editEvent}`,
     );
   };
+  const handleClearSpecificEvent = () => {
+    modalClose();
+    dispatch(clearSelectEvent());
+  };
   return (
     <Modal
       open={openModal || false}
-      onClose={modalClose}
+      onClose={handleClearSpecificEvent}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -56,7 +60,7 @@ export const EventModal: FC<IEventModalProps> = ({
         <IconButton
           aria-label="Close"
           sx={styles.modalIconClose}
-          onClick={modalClose}
+          onClick={handleClearSpecificEvent}
         >
           <CloseIcon />
         </IconButton>

@@ -27,6 +27,14 @@ export const editEventReducer = (
           ...action.payload,
         },
       };
+    case EditEventActionTypes.UPDATE_EVENT:
+      return {
+        ...state,
+        allEvents: {
+          ...state.allEvents,
+          ...action.payload,
+        },
+      };
     case EditEventActionTypes.SELECT_DAY:
       return {
         ...state,
@@ -34,6 +42,11 @@ export const editEventReducer = (
           ...state.specificDay,
           ...action.payload,
         },
+      };
+    case EditEventActionTypes.SELECT_EVENT:
+      return {
+        ...state,
+        specificEvent: [...state.specificEvent, action.payload],
       };
     case EditEventActionTypes.SAVE_EVENT:
       return {
@@ -51,7 +64,12 @@ export const editEventReducer = (
       return {
         ...state,
         isEventAdded: initialState.isEventAdded,
-        additionalInputs: initialState.additionalInputs,
+        specificEvent: initialState.specificEvent,
+      };
+    case EditEventActionTypes.CLEAR_SELECT_EVENT:
+      return {
+        ...state,
+        specificEvent: initialState.specificEvent,
       };
     case EditEventActionTypes.IS_EVENT_ADDED:
       return {
