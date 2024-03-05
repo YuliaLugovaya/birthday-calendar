@@ -14,6 +14,7 @@ import {
   SelectEventAction,
   SpecificEvent,
   ClearSelectEventAction,
+  UpdateAllEventsAction,
 } from "./eventsTypes";
 
 export const addEvent = (payload: string): AddEventAction => {
@@ -32,7 +33,7 @@ export const updateAdditionalInputs = (
   };
 };
 
-export const updateEvent = (payload: AllEvents): UpdateEventAction => {
+export const updateEvent = (payload: AdditionalInputs): UpdateEventAction => {
   return {
     type: EditEventActionTypes.UPDATE_EVENT,
     payload,

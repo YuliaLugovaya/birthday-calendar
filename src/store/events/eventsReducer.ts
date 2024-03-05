@@ -3,6 +3,7 @@ import {
   EditEventAction,
   initialState,
   EditEventActionTypes,
+  AdditionalInputs,
 } from "./eventsTypes";
 
 export const editEventReducer = (
@@ -27,14 +28,47 @@ export const editEventReducer = (
           ...action.payload,
         },
       };
-    case EditEventActionTypes.UPDATE_EVENT:
+    case EditEventActionTypes.UPDATE_EVENT: {
+      const {
+        name,
+        year,
+        socials,
+        phone,
+        messengers,
+        address,
+        email,
+        textarea,
+        photo,
+        selectedEvent,
+      } = action.payload;
       return {
         ...state,
-        allEvents: {
-          ...state.allEvents,
-          ...action.payload,
-        },
+        allEvents: state.allEvents.map((event) => {
+          const key = `${state.specificDay.day}${state.specificDay.month}`;
+          const keyName = state.specificEvent[0][key];
+          if (Object.keys(event)[0] === key && event[key].name === keyName) {
+            return {
+              ...event,
+              [key]: {
+                ...event[key],
+                name,
+                year,
+                socials,
+                phone,
+                messengers,
+                address,
+                email,
+                textarea,
+                photo,
+                selectedEvent,
+              },
+            };
+          } else {
+            return event;
+          }
+        }),
       };
+    }
     case EditEventActionTypes.SELECT_DAY:
       return {
         ...state,

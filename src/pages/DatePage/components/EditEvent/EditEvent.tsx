@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -12,10 +12,20 @@ import {
 } from "@mui/material";
 import { styles } from "./EditEvent.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { EditEventState } from "store/events/eventsTypes";
+import {
+  AdditionalInputs,
+  AllEvents,
+  EditEventState,
+} from "store/events/eventsTypes";
 import { Outlet, useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
-import { clearSpecificEvent, updateEvent } from "store/events/eventsActions";
+import {
+  clearSpecificEvent,
+  saveEvent,
+  updateAdditionalInputs,
+  // updateAllEvents,
+  updateEvent,
+} from "store/events/eventsActions";
 import years from "config/years";
 
 export const EditEvent: FC = () => {
@@ -31,24 +41,18 @@ export const EditEvent: FC = () => {
   const specificDay = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
   );
-  const handleUpdateEvent = () => {
-    // const updatedEvent = { ...specificEvent }; // Создать копию specificEvent
-    // updatedEvent[Object.keys(updatedEvent)[0]] = {
-    //   ...updatedEvent[Object.keys(updatedEvent)[0]],
-    //   name: // Новое значение для name,
-    //   socials: // Новое значение для socials,
-    // };
-
-    // dispatch(updateEvent(updatedEvent));
-    dispatch(clearSpecificEvent());
-    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
-  };
+  const additionalInputs = useSelector(
+    (rootReducer: { event: EditEventState }) =>
+      rootReducer.event.additionalInputs,
+  );
   const key = `${specificDay.day}${specificDay.month}`;
   const keyName = specificEvent[0][key];
   const foundEvents = allEvents.filter(
     (event) => Object.keys(event)[0] === key,
   );
   const foundEvent = foundEvents.find((event) => event[key].name === keyName);
+  console.log(foundEvent);
+  console.log(additionalInputs);
   const eventName = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].name
     : "";
@@ -73,6 +77,72 @@ export const EditEvent: FC = () => {
   const eventTextarea = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].textarea
     : "";
+  const eventPhoto = foundEvent
+    ? foundEvent[Object.keys(foundEvent)[0]].photo
+    : "";
+  const eventS = foundEvent
+    ? foundEvent[Object.keys(foundEvent)[0]].selectedEvent
+    : "";
+
+  const handleAdditionalInputChange = (value: string, key: string) => {
+    let updatedInputs: AdditionalInputs;
+    if (key === "messengers") {
+      updatedInputs = {
+        ...additionalInputs,
+        [key]: [...additionalInputs.messengers, value],
+      };
+    } else {
+      updatedInputs = {
+        ...additionalInputs,
+        [key]: value,
+      };
+    }
+    dispatch(updateAdditionalInputs(updatedInputs));
+  };
+
+  const [edit, setEdit] = useState("");
+  const [name, setName] = useState(eventName);
+  const [year, setYear] = useState(eventYear);
+  const [socials, setSocials] = useState(eventSocials);
+  const [phone, setPhone] = useState(eventPhone);
+  const [messengers, setMessengers] = useState([""]);
+  const [address, setAddress] = useState(eventAddress);
+  const [email, setEmail] = useState(eventEmail);
+  const [textarea, setTextarea] = useState(eventTextarea);
+  const [photo, setPhoto] = useState(eventPhoto);
+  const [selectedEvent, setS] = useState(eventS);
+
+  const handleUpdateEvent = () => {
+    dispatch(
+      updateEvent({
+        name,
+        year,
+        socials,
+        phone,
+        messengers,
+        address,
+        email,
+        textarea,
+        photo,
+        selectedEvent,
+      }),
+    );
+    setName("");
+    setYear("");
+    setSocials("");
+    setPhone("");
+    // setMessengers(messengers);
+    setAddress("");
+    setEmail("");
+    setTextarea("");
+    dispatch(clearSpecificEvent());
+    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+  };
+
+  useEffect(() => {
+    setName(eventName);
+    setSocials(eventSocials);
+  }, [eventName, eventSocials]);
 
   const [fileUploaded, setFileUploaded] = useState(false);
   const [fileSizeError, setFileSizeError] = useState(false);
@@ -118,23 +188,19 @@ export const EditEvent: FC = () => {
   return (
     <Box sx={styles.editEventWrapper}>
       <Box sx={styles.editEventChangeWrapper}>
-        <Box sx={styles.editEventChangeContainer}>
+        <Box component="form" sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Имя (фамилия, имя, отчество)"
-            value={eventName}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "name")
-            // }
+            value={name}
+            onChange={(event) => setName(event.target.value)}
             sx={styles.editEventChange}
             required
           />
           <TextField
             select
             sx={styles.editEventChange}
-            value={eventYear}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "year")
-            // }
+            value={year}
+            onChange={(event) => setYear(event.target.value)}
           >
             {years.map((option) => (
               <MenuItem
@@ -148,30 +214,26 @@ export const EditEvent: FC = () => {
           </TextField>
           <TextField
             placeholder="Ccылка на социальные сети"
-            value={eventSocials}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "socials")
-            // }
+            value={socials}
+            onChange={(event) => setSocials(event.target.value)}
             sx={styles.editEventChange}
           />
           <TextField
             placeholder="Телефон"
             value={eventPhone}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "phone")
-            // }
+            onChange={(event) => setPhone(event.target.value)}
             sx={styles.editEventChange}
           />
-          <FormGroup sx={styles.editEventCheckboxWrapper}>
+          {/* <FormGroup sx={styles.editEventCheckboxWrapper}>
             <FormControlLabel
               control={<Checkbox />}
               label="WhatsApp"
               checked={eventPhoneMessengers.includes("WhatsApp")}
               onChange={(e) => {
                 const target = e.target as HTMLInputElement;
-                // if (target.checked) {
-                //   handleAdditionalInputChange("WhatsApp", "messengers");
-                // }
+                if (target.checked) {
+                  handleAdditionalInputChange("WhatsApp", "messengers");
+                }
               }}
               sx={styles.editEventCheckbox}
             />
@@ -181,9 +243,9 @@ export const EditEvent: FC = () => {
               checked={eventPhoneMessengers.includes("Viber")}
               onChange={(e) => {
                 const target = e.target as HTMLInputElement;
-                // if (target.checked) {
-                //   handleAdditionalInputChange("Viber", "messengers");
-                // }
+                if (target.checked) {
+                  handleAdditionalInputChange("Viber", "messengers");
+                }
               }}
               sx={styles.editEventCheckbox}
             />
@@ -193,42 +255,36 @@ export const EditEvent: FC = () => {
               checked={eventPhoneMessengers.includes("Telegram")}
               onChange={(e) => {
                 const target = e.target as HTMLInputElement;
-                // if (target.checked) {
-                //   handleAdditionalInputChange("Telegram", "messengers");
-                // }
+                if (target.checked) {
+                  handleAdditionalInputChange("Telegram", "messengers");
+                }
               }}
               sx={styles.editEventCheckbox}
             />
-          </FormGroup>
+          </FormGroup> */}
         </Box>
         <Box sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Адрес"
-            value={eventAddress}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "address")
-            // }
+            value={address}
+            onChange={(event) => setAddress(event.target.value)}
             sx={styles.editEventChange}
           />
 
           <TextField
             placeholder="E-mail"
-            value={eventEmail}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "email")
-            // }
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             sx={styles.editEventChange}
           />
           <TextField
             placeholder="Дополнительная информация"
             multiline
-            value={eventTextarea}
-            // onChange={(e) =>
-            //   handleAdditionalInputChange(e.target.value, "textarea")
-            // }
+            value={textarea}
+            onChange={(event) => setTextarea(event.target.value)}
             sx={styles.editEventChange}
           />
-          {fileUploaded && (
+          {/* {fileUploaded && (
             <Box sx={styles.editEventPhotoWrapper}>
               {uploadedPhoto && (
                 <Avatar
@@ -261,7 +317,7 @@ export const EditEvent: FC = () => {
                 </Typography>
               )}
             </>
-          )}
+          )} */}
         </Box>
         <Button sx={styles.editEventSave} onClick={handleUpdateEvent}>
           Сохранить
