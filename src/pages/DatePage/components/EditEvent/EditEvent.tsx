@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -12,20 +12,10 @@ import {
 } from "@mui/material";
 import { styles } from "./EditEvent.styled";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AdditionalInputs,
-  AllEvents,
-  EditEventState,
-} from "store/events/eventsTypes";
-import { Outlet, useNavigate } from "react-router-dom";
+import { EditEventState } from "store/events/eventsTypes";
+import { useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
-import {
-  clearSpecificEvent,
-  saveEvent,
-  updateAdditionalInputs,
-  // updateAllEvents,
-  updateEvent,
-} from "store/events/eventsActions";
+import { clearSpecificEvent, updateEvent } from "store/events/eventsActions";
 import years from "config/years";
 
 export const EditEvent: FC = () => {
@@ -80,27 +70,7 @@ export const EditEvent: FC = () => {
   const eventPhoto = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].photo
     : "";
-  const eventS = foundEvent
-    ? foundEvent[Object.keys(foundEvent)[0]].selectedEvent
-    : "";
 
-  const handleAdditionalInputChange = (value: string, key: string) => {
-    let updatedInputs: AdditionalInputs;
-    if (key === "messengers") {
-      updatedInputs = {
-        ...additionalInputs,
-        [key]: [...additionalInputs.messengers, value],
-      };
-    } else {
-      updatedInputs = {
-        ...additionalInputs,
-        [key]: value,
-      };
-    }
-    dispatch(updateAdditionalInputs(updatedInputs));
-  };
-
-  const [edit, setEdit] = useState("");
   const [name, setName] = useState(eventName);
   const [year, setYear] = useState(eventYear);
   const [socials, setSocials] = useState(eventSocials);
@@ -110,7 +80,6 @@ export const EditEvent: FC = () => {
   const [email, setEmail] = useState(eventEmail);
   const [textarea, setTextarea] = useState(eventTextarea);
   const [photo, setPhoto] = useState(eventPhoto);
-  const [selectedEvent, setS] = useState(eventS);
 
   const handleUpdateEvent = () => {
     dispatch(
@@ -124,7 +93,6 @@ export const EditEvent: FC = () => {
         email,
         textarea,
         photo,
-        selectedEvent,
       }),
     );
     setName("");

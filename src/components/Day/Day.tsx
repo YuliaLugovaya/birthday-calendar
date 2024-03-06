@@ -6,8 +6,6 @@ import { isSameDay } from "date-fns";
 import { EditEventState, SpecificDay } from "store/events/eventsTypes";
 import { useDispatch, useSelector } from "react-redux";
 import birthday from "assets/images/png/birthday-cake.png";
-import holiday from "assets/images/png/calendar.png";
-import eventOther from "assets/images/png/stars.png";
 import { routes } from "config/routes";
 import { selectDay } from "store/events/eventsActions";
 import { useNavigate } from "react-router-dom";
@@ -33,45 +31,20 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
       email?: string;
       textarea?: string;
       photo?: string;
-      selectedEvent: string;
     };
   }) => {
     return Object.entries(events).map(([key, event]) => {
       if (key.startsWith(day + month)) {
-        if (event.selectedEvent === "День рождения") {
-          return (
-            <Box key={event.name}>
-              <CardMedia
-                component="img"
-                alt="birthday"
-                image={birthday}
-                sx={styles.eventIcon}
-              ></CardMedia>
-            </Box>
-          );
-        } else if (event.selectedEvent === "Международный праздник") {
-          return (
-            <Box key={event.name}>
-              <CardMedia
-                component="img"
-                alt="holiday"
-                image={holiday}
-                sx={styles.eventIcon}
-              ></CardMedia>
-            </Box>
-          );
-        } else if (event.selectedEvent === "Другое") {
-          return (
-            <Box key={event.name}>
-              <CardMedia
-                component="img"
-                alt="eventOther"
-                image={eventOther}
-                sx={styles.eventIcon}
-              ></CardMedia>
-            </Box>
-          );
-        }
+        return (
+          <Box key={event.name}>
+            <CardMedia
+              component="img"
+              alt="birthday"
+              image={birthday}
+              sx={styles.eventIcon}
+            ></CardMedia>
+          </Box>
+        );
       }
       return null;
     });

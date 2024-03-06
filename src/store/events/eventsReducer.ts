@@ -3,7 +3,6 @@ import {
   EditEventAction,
   initialState,
   EditEventActionTypes,
-  AdditionalInputs,
 } from "./eventsTypes";
 
 export const editEventReducer = (
@@ -17,7 +16,6 @@ export const editEventReducer = (
         isEventAdded: true,
         additionalInputs: {
           ...state.additionalInputs,
-          selectedEvent: action.payload,
         },
       };
     case EditEventActionTypes.UPDATE_ADDITIONAL_INPUTS:
@@ -39,7 +37,6 @@ export const editEventReducer = (
         email,
         textarea,
         photo,
-        selectedEvent,
       } = action.payload;
       return {
         ...state,
@@ -60,7 +57,6 @@ export const editEventReducer = (
                 email,
                 textarea,
                 photo,
-                selectedEvent,
               },
             };
           } else {

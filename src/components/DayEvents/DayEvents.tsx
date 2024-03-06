@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import { styles } from "./DayEvents.styled";
-import events from "config/events";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addEvent,
@@ -34,10 +33,6 @@ export const DayEvents = () => {
   const dispatch = useDispatch();
   const isEventAdded = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.isEventAdded,
-  );
-  const selectedEvent = useSelector(
-    (rootReducer: { event: EditEventState }) =>
-      rootReducer.event.additionalInputs.selectedEvent,
   );
 
   const additionalInputs = useSelector(
@@ -166,7 +161,6 @@ export const DayEvents = () => {
       email?: string;
       textarea?: string;
       photo?: string;
-      selectedEvent: string;
     };
   }) => {
     const data = Object.keys(event)[0];
@@ -186,9 +180,7 @@ export const DayEvents = () => {
               ...styles.editAddedEvents,
               border: "1px solid",
               borderColor: "color.green",
-              bgcolor: event[data].selectedEvent
-                ? "color.yellowLight"
-                : "color.green",
+              bgcolor: "color.yellowLight",
               color: "text.primary",
               "&:hover": {
                 bgcolor: "color.green",
@@ -207,9 +199,7 @@ export const DayEvents = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  bgcolor: event[data].selectedEvent
-                    ? "color.yellow"
-                    : "color.green",
+                  bgcolor: "color.yellow",
                 }}
               >
                 <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
@@ -219,7 +209,6 @@ export const DayEvents = () => {
             )}
             <Box>
               <Typography>{event[data].name}</Typography>
-              <Typography>{event[data].selectedEvent}</Typography>
             </Box>
           </Button>
           <EventModal
@@ -234,7 +223,6 @@ export const DayEvents = () => {
             email={event[data].email}
             textarea={event[data].textarea}
             photo={event[data].photo}
-            selectedEvent={event[data].selectedEvent}
             day={specificDay.day}
             modifiedMonth={modifiedMonth}
           />

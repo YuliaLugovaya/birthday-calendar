@@ -29,7 +29,6 @@ export const EventModal: FC<IEventModalProps> = ({
   email,
   textarea,
   photo,
-  selectedEvent,
   day,
   modifiedMonth,
 }) => {
@@ -75,7 +74,7 @@ export const EventModal: FC<IEventModalProps> = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              bgcolor: selectedEvent ? "color.yellow" : "color.green",
+              bgcolor: "color.yellow",
             }}
           >
             <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>

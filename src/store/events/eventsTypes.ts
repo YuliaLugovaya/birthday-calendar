@@ -8,7 +8,6 @@ export interface AdditionalInputs {
   email: string;
   textarea: string;
   photo: string;
-  selectedEvent: string;
 }
 
 export interface SpecificDay {
@@ -45,7 +44,6 @@ export const initialState: EditEventState = {
     email: "",
     textarea: "",
     photo: "",
-    selectedEvent: "",
   },
   allEvents: [],
   specificDay: {
@@ -65,7 +63,6 @@ export enum EditEventActionTypes {
   SELECT_DAY = "SELECT_DAY",
   IS_EVENT_ADDED = "IS_EVENT_ADDED",
   UPDATE_EVENT = "UPDATE_EVENT",
-  UPDATE_ALL_EVENTS = "UPDATE_ALL_EVENTS",
   SELECT_EVENT = "SELECT_EVENT",
   CLEAR_SELECT_EVENT = "CLEAR_SELECT_EVENT",
 }
@@ -83,11 +80,6 @@ export interface UpdateAdditionalInputsAction {
 export interface UpdateEventAction {
   type: EditEventActionTypes.UPDATE_EVENT;
   payload: AdditionalInputs;
-}
-
-export interface UpdateAllEventsAction {
-  type: EditEventActionTypes.UPDATE_ALL_EVENTS;
-  payload: AllEvents;
 }
 
 export interface SelectDayAction {
@@ -130,6 +122,5 @@ export type EditEventAction =
   | SelectDayAction
   | IsEventAddedAction
   | UpdateEventAction
-  | UpdateAllEventsAction
   | SelectEventAction
   | ClearSelectEventAction;

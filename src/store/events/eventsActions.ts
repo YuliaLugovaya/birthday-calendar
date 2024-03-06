@@ -14,7 +14,6 @@ import {
   SelectEventAction,
   SpecificEvent,
   ClearSelectEventAction,
-  UpdateAllEventsAction,
 } from "./eventsTypes";
 
 export const addEvent = (payload: string): AddEventAction => {
