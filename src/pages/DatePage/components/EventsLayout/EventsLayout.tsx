@@ -59,7 +59,7 @@ export const EventsLayout: FC<IEventsLayoutProps> = ({
           </Typography>
         </Box>
       </Box>
-      <Box>
+      <Box sx={styles.editEventBody}>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>

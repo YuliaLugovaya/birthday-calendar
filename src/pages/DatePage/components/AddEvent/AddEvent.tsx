@@ -126,8 +126,8 @@ export const AddEvent: FC = () => {
   };
 
   return (
-    <Box sx={styles.editEventWrapper}>
-      <Box sx={styles.editEventChangeWrapper}>
+    <Box sx={styles.editEventChangeWrapper}>
+      <Box sx={styles.editEventChangeFormContainer}>
         <Box sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Имя (фамилия, имя, отчество)"
@@ -273,10 +273,11 @@ export const AddEvent: FC = () => {
             </>
           )}
         </Box>
-        <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
-          Сохранить
-        </Button>
       </Box>
+
+      <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
+        Сохранить
+      </Button>
     </Box>
   );
 };

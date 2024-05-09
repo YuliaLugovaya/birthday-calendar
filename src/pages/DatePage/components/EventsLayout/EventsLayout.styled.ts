@@ -149,4 +149,9 @@ export const styles = {
       color: "text.secondary",
     },
   },
+  editEventBody: {
+    display: "flex",
+    width: "100%",
+    p: "30px",
+  },
 };

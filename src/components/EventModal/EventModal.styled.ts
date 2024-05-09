@@ -88,4 +88,39 @@ export const styles = {
     top: 8,
     right: 8,
   },
+  modalPhotoNameContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    m: "25px 0",
+  },
+  modalAddedPhoto: {
+    width: 70,
+    height: 70,
+    mb: "10px",
+  },
+  modalContentContainer: {
+    display: "flex",
+    flexDirection: "column",
+    mb: "30px",
+  },
+  modalAccentText: {
+    display: "inline",
+    fontWeight: 700,
+  },
+  modalName: {
+    fontSize: "24px",
+  },
+  modalEditButton: {
+    width: "200px",
+    p: "20px",
+    border: "1px solid",
+    borderColor: "color.green",
+    bgcolor: "color.greenLight",
+    color: "text.primary",
+    "&:hover": {
+      bgcolor: "color.green",
+      color: "text.secondary",
+    },
+  },
 };

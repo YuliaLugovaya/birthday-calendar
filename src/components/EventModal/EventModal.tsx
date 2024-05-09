@@ -63,65 +63,103 @@ export const EventModal: FC<IEventModalProps> = ({
         >
           <CloseIcon />
         </IconButton>
-        {photo ? (
-          <Avatar alt={name} src={photo} />
-        ) : (
-          <Box
-            sx={{
-              width: 50,
-              height: 50,
-              borderRadius: "50%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              bgcolor: "color.yellow",
-            }}
-          >
-            <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
-              {name.charAt(0)}
+        <Box sx={styles.modalPhotoNameContainer}>
+          {photo ? (
+            <Avatar alt={name} src={photo} sx={styles.modalAddedPhoto} />
+          ) : (
+            <Box
+              sx={{
+                width: 70,
+                height: 70,
+                borderRadius: "50%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                bgcolor: "color.yellow",
+                mb: "10px",
+              }}
+            >
+              <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
+                {name.charAt(0)}
+              </Typography>
+            </Box>
+          )}
+          <Typography sx={styles.modalName}>{name}</Typography>
+        </Box>
+        <Box sx={styles.modalContentContainer}>
+          {year ? (
+            <Typography>
+              <Typography sx={styles.modalAccentText}>
+                Дата рождения:
+              </Typography>{" "}
+              {day} {modifiedMonth} {year}
             </Typography>
-          </Box>
-        )}
-        <Typography>{name}</Typography>
-        {year ? (
-          <Typography>
-            Дата рождения: {day} {modifiedMonth} {year}
-          </Typography>
-        ) : (
-          <Typography>
-            Дата рождения: {day} {modifiedMonth}
-          </Typography>
-        )}
-        {phone && (
-          <Typography>
-            {" "}
-            Телефон:
-            {phone}{" "}
-            {messengers && (
-              <>
-                {messengers.length > 0 && (
-                  <>
-                    {" "}
-                    (
-                    {messengers
-                      .map((messenger) => (
-                        <span key={messenger}>{messenger}</span>
-                      ))
-                      .join(", ")}
-                    )
-                  </>
-                )}
-              </>
-            )}
-          </Typography>
-        )}
-        {address && <Typography>Адрес: {address}</Typography>}
-        {socials && <Typography>Социальные сети: {socials}</Typography>}
-        {email && <Typography>E-mail: {email}</Typography>}
-        {textarea && (
-          <Typography>Дополнительная информация: {textarea}</Typography>
-        )}
-        <Button onClick={handleEditEvent}>Редактировать</Button>
+          ) : (
+            <Typography>
+              <Typography sx={styles.modalAccentText}>
+                Дата рождения:
+              </Typography>{" "}
+              {day} {modifiedMonth}
+            </Typography>
+          )}
+          {phone && (
+            <Typography>
+              {" "}
+              <Typography sx={styles.modalAccentText}>Телефон: </Typography>
+              {phone}{" "}
+              {messengers && (
+                <>
+                  {messengers.length > 0 && (
+                    <>
+                      {" "}
+                      (
+                      {messengers
+                        .map((messenger) => (
+                          <span key={messenger}>{messenger}</span>
+                        ))
+                        .join(", ")}
+                      )
+                    </>
+                  )}
+                </>
+              )}
+            </Typography>
+          )}
+          {address && (
+            <Typography>
+              <Typography sx={styles.modalAccentText}>Адрес:</Typography>{" "}
+              {address}
+            </Typography>
+          )}
+          {socials && (
+            <Typography>
+              <Typography sx={styles.modalAccentText}>
+                Социальные сети:
+              </Typography>{" "}
+              <a href={socials} target="_blank" rel="noopener noreferrer">
+                {socials}
+              </a>
+            </Typography>
+          )}
+          {email && (
+            <Typography>
+              <Typography sx={styles.modalAccentText}>E-mail:</Typography>{" "}
+              {email}
+            </Typography>
+          )}
+          {textarea && (
+            <Typography>
+              <Typography sx={styles.modalAccentText}>
+                Дополнительная информация:
+              </Typography>{" "}
+              {textarea}
+            </Typography>
+          )}
+        </Box>
+
+        <Button onClick={handleEditEvent} sx={styles.modalEditButton}>
+          Редактировать
+        </Button>
       </Box>
     </Modal>
   );

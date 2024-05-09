@@ -189,12 +189,16 @@ export const DayEvents = () => {
             }}
           >
             {event[data].photo ? (
-              <Avatar alt={event[data].name} src={event[data].photo} />
+              <Avatar
+                alt={event[data].name}
+                src={event[data].photo}
+                sx={styles.editAddedPhoto}
+              />
             ) : (
               <Box
                 sx={{
-                  width: 50,
-                  height: 50,
+                  width: 70,
+                  height: 70,
                   borderRadius: "50%",
                   display: "flex",
                   justifyContent: "center",

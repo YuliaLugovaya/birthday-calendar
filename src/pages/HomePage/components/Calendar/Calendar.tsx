@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { Box, Button, useMediaQuery } from "@mui/material";
 import { styles } from "./Calendar.styled";
 import { Month } from "components/Month/Month";
@@ -27,15 +27,23 @@ export const Calendar: FC = () => {
     infinite: false,
   };
 
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(
+    settings.initialSlide,
+  );
+
   const nextSlide = () => {
+    const newIndex = Math.min(currentSlideIndex + 1, monthItems.length - 1);
+    setCurrentSlideIndex(newIndex);
     if (sliderRef.current) {
-      sliderRef.current.slickNext();
+      sliderRef.current.slickGoTo(newIndex);
     }
   };
 
   const prevSlide = () => {
+    const newIndex = Math.max(currentSlideIndex - 1, 0);
+    setCurrentSlideIndex(newIndex);
     if (sliderRef.current) {
-      sliderRef.current.slickPrev();
+      sliderRef.current.slickGoTo(newIndex);
     }
   };
 

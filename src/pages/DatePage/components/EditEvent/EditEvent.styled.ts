@@ -65,6 +65,8 @@ export const styles = {
   },
   editEventChangeWrapper: {
     display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     gap: "10px",
   },
   editEventChangeContainer: {
@@ -148,5 +150,9 @@ export const styles = {
       bgcolor: "color.green",
       color: "text.secondary",
     },
+  },
+  editEventChangeFormContainer: {
+    display: "flex",
+    gap: "10px",
   },
 };

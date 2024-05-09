@@ -154,8 +154,8 @@ export const EditEvent: FC = () => {
   };
 
   return (
-    <Box sx={styles.editEventWrapper}>
-      <Box sx={styles.editEventChangeWrapper}>
+    <Box sx={styles.editEventChangeWrapper}>
+      <Box sx={styles.editEventChangeFormContainer}>
         <Box component="form" sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Имя (фамилия, имя, отчество)"
@@ -287,10 +287,11 @@ export const EditEvent: FC = () => {
             </>
           )} */}
         </Box>
-        <Button sx={styles.editEventSave} onClick={handleUpdateEvent}>
-          Сохранить
-        </Button>
       </Box>
+
+      <Button sx={styles.editEventSave} onClick={handleUpdateEvent}>
+        Сохранить
+      </Button>
     </Box>
   );
 };

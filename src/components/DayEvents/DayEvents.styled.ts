@@ -133,8 +133,11 @@ export const styles = {
   editAddedEvents: {
     width: "300px",
     height: "200px",
+    display: "flex",
+    flexDirection: "column",
     p: "20px",
     mr: "20px",
+    gap: "10px",
   },
   editEventAdd: {
     width: "300px",
@@ -148,5 +151,9 @@ export const styles = {
       bgcolor: "color.green",
       color: "text.secondary",
     },
+  },
+  editAddedPhoto: {
+    width: 70,
+    height: 70,
   },
 };

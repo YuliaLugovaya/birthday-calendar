@@ -1,30 +1,30 @@
 export const styles = {
-  editEventContainer: {
-    "& .MuiDrawer-paperAnchorTop": {
-      width: "100vw",
-      height: "100vh",
-      alignItems: "start",
-    },
-  },
-  editEventHeader: {
-    display: "flex",
-    justifyContent: "start",
-    alignItems: "center",
-    width: "100%",
-    p: "15px",
-    mb: "15px",
-    bgcolor: "color.greenLight",
-  },
-  editEventIconClose: {
-    width: "30px",
-    cursor: "pointer",
-  },
-  editEventWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%",
-  },
+  // editEventContainer: {
+  //   "& .MuiDrawer-paperAnchorTop": {
+  //     width: "100vw",
+  //     height: "100vh",
+  //     alignItems: "start",
+  //   },
+  // },
+  // editEventHeader: {
+  //   display: "flex",
+  //   justifyContent: "start",
+  //   alignItems: "center",
+  //   width: "100%",
+  //   p: "15px",
+  //   mb: "15px",
+  //   bgcolor: "color.greenLight",
+  // },
+  // editEventIconClose: {
+  //   width: "30px",
+  //   cursor: "pointer",
+  // },
+  // editEventFormWrapper: {
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   width: "100%",
+  // },
   editEventContant: {
     display: "flex",
     flexDirection: "column",
@@ -64,6 +64,12 @@ export const styles = {
     },
   },
   editEventChangeWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
+  },
+  editEventChangeFormContainer: {
     display: "flex",
     gap: "10px",
   },
