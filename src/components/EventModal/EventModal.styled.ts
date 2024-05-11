@@ -61,14 +61,14 @@ export const styles = {
     color: "text.primary",
     textAlign: "justify",
   },
-  modalLink: {
-    mb: "20px",
-    fontSize: {
-      xs: "1.1rem",
-      md: "1.3rem",
-    },
-    color: "color.yellow",
-  },
+  // modalLink: {
+  //   mb: "20px",
+  //   fontSize: {
+  //     xs: "1.1rem",
+  //     md: "1.3rem",
+  //   },
+  //   color: "color.yellow",
+  // },
   modalButton: {
     width: {
       xs: "100%",
@@ -121,6 +121,13 @@ export const styles = {
     "&:hover": {
       bgcolor: "color.green",
       color: "text.secondary",
+    },
+  },
+  modalLink: {
+    textDecoration: "none",
+    color: "color.blue",
+    "&:hover": {
+      color: "color.green",
     },
   },
 };

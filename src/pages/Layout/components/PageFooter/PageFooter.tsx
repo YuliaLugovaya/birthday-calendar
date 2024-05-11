@@ -19,7 +19,7 @@ export const PageFooter: FC = () => {
     <Box sx={styles.footerWrapper} component="footer">
       <Link
         sx={styles.footerLink}
-        href="https://github.com/YuliaLugovaya/event-calendar"
+        href="https://github.com/YuliaLugovaya/birthday-calendar"
         target="_blank"
       >
         GitHub

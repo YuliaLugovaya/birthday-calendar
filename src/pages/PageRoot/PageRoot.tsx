@@ -9,6 +9,7 @@ import { DayEvents } from "components/DayEvents";
 
 const HomePage = lazy(() => import("pages/HomePage"));
 const DatePage = lazy(() => import("pages/DatePage"));
+const BirthdayPage = lazy(() => import("pages/BirthdayPage"));
 
 export const PageRoot: FC = () => {
   useLocationScrollToTop();
@@ -29,6 +30,10 @@ export const PageRoot: FC = () => {
               />
             </Route>
           </Route>
+          <Route
+            path={`${routes.home.allBirthdays}`}
+            element={<BirthdayPage />}
+          />
         </Route>
       </Routes>
     </Suspense>

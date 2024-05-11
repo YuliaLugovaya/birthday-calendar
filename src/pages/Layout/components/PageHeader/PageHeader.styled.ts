@@ -55,6 +55,9 @@ export const styles = {
     alignItems: "center",
     gap: "15px",
   },
+  headerLogoImage: {
+    width: "30px",
+  },
   headerIcon: {
     width: {
       xs: "50px",

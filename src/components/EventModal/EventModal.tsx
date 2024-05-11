@@ -6,12 +6,13 @@ import {
   IconButton,
   Avatar,
   Button,
+  Link,
 } from "@mui/material";
 import { ReactComponent as CloseIcon } from "assets/svg/icon_close.svg";
 import { styles } from "./EventModal.styled";
 import { IEventModalProps } from "./EventModalTypes";
 import { routes } from "config/routes";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { EditEventState } from "store/events/eventsTypes";
@@ -122,9 +123,14 @@ export const EventModal: FC<IEventModalProps> = ({
               <Typography sx={styles.modalAccentText}>
                 Социальные сети:
               </Typography>{" "}
-              <a href={socials} target="_blank" rel="noopener noreferrer">
+              <Link
+                sx={styles.modalLink}
+                href={socials}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {socials}
-              </a>
+              </Link>
             </Typography>
           )}
           {email && (

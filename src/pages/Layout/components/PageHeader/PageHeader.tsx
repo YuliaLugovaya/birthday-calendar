@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { routes } from "config/routes";
 import burger from "assets/images/png/burger-menu.png";
 import close from "assets/images/png/close.png";
+import logo from "assets/images/png/logo.png";
 
 export const PageHeader: FC = () => {
   const isMobile = useMediaQuery("(max-width: 1024px)");
@@ -25,7 +26,13 @@ export const PageHeader: FC = () => {
       <Box sx={styles.headerContainer}>
         <Link to={routes.home.root}>
           <Box sx={styles.headerLogoContainer}>
-            <Typography sx={styles.headerLogo}>Календарь событий</Typography>
+            <CardMedia
+              sx={styles.headerLogoImage}
+              component="img"
+              image={logo}
+              alt="Logo"
+            />
+            <Typography sx={styles.headerLogo}>Birthday calendar</Typography>
           </Box>
         </Link>
         {isMobile ? (
@@ -51,9 +58,9 @@ export const PageHeader: FC = () => {
                 onClick={toggleDrawer}
               />
               <Box sx={styles.headerLinksBurgerContainer}>
-                <Link onClick={toggleDrawer} to={routes.home.allEvents}>
+                <Link onClick={toggleDrawer} to={routes.home.allBirthdays}>
                   <Typography sx={styles.headerLinksBurger}>
-                    Все события
+                    Все дни рождения
                   </Typography>
                 </Link>
               </Box>
@@ -61,8 +68,8 @@ export const PageHeader: FC = () => {
           </Box>
         ) : (
           <Box sx={styles.headerLinksContainer}>
-            <Link to={routes.home.allEvents}>
-              <Typography sx={styles.headerLinks}>Все события</Typography>
+            <Link to={routes.home.allBirthdays}>
+              <Typography sx={styles.headerLinks}>Все дни рождения</Typography>
             </Link>
           </Box>
         )}

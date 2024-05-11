@@ -1,12 +1,12 @@
 export const routes = {
   home: {
-    root: "/event-calendar",
+    root: "/birthday-calendar",
     date: {
       root: "date",
       day: ":day",
       addEvent: "add-event",
       editEvent: "edit-event",
     },
-    allEvents: "all-events",
+    allBirthdays: "all-birthday",
   },
 };
