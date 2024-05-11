@@ -94,6 +94,7 @@ export const editEventReducer = (
       return {
         ...state,
         isEventAdded: initialState.isEventAdded,
+        additionalInputs: initialState.additionalInputs,
         specificEvent: initialState.specificEvent,
       };
     case EditEventActionTypes.CLEAR_SELECT_EVENT:

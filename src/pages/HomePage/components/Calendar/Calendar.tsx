@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { Box, Button, useMediaQuery } from "@mui/material";
 import { styles } from "./Calendar.styled";
 import { Month } from "components/Month/Month";

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 import {
   Avatar,
   Box,
@@ -9,7 +9,6 @@ import {
   MenuItem,
   TextField,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import { styles } from "./AddEvent.styled";
 import events from "config/events";
@@ -57,21 +56,44 @@ export const AddEvent: FC = () => {
     dispatch(addEvent("Выберите событие"));
   };
 
+  // const handleAdditionalInputChange = (value: string, key: string) => {
+  //   let updatedInputs: AdditionalInputs;
+  //   if (key === "messengers") {
+  //     updatedInputs = {
+  //       ...additionalInputs,
+  //       [key]: [...additionalInputs.messengers, value],
+  //     };
+  //   } else {
+  //     updatedInputs = {
+  //       ...additionalInputs,
+  //       [key]: value,
+  //     };
+  //   }
+  //   dispatch(updateAdditionalInputs(updatedInputs));
+  // };
+
   const handleAdditionalInputChange = (value: string, key: string) => {
-    let updatedInputs: AdditionalInputs;
+    let updatedMessengers: string[] = [...additionalInputs.messengers];
+
     if (key === "messengers") {
-      updatedInputs = {
-        ...additionalInputs,
-        [key]: [...additionalInputs.messengers, value],
-      };
-    } else {
-      updatedInputs = {
-        ...additionalInputs,
-        [key]: value,
-      };
+      if (!updatedMessengers.includes(value)) {
+        updatedMessengers.push(value);
+      } else {
+        updatedMessengers = updatedMessengers.filter(
+          (messenger) => messenger !== value,
+        );
+      }
     }
+
+    const updatedInputs: AdditionalInputs = {
+      ...additionalInputs,
+      [key]: key === "messengers" ? updatedMessengers : value,
+    };
+    console.log(updatedMessengers);
+
     dispatch(updateAdditionalInputs(updatedInputs));
   };
+
   const navigate = useNavigate();
 
   const handleSaveEvent = () => {
@@ -173,7 +195,7 @@ export const AddEvent: FC = () => {
             sx={styles.editEventChange}
           />
           <FormGroup sx={styles.editEventCheckboxWrapper}>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox />}
               label="WhatsApp"
               checked={additionalInputs.messengers.includes("WhatsApp")}
@@ -207,6 +229,33 @@ export const AddEvent: FC = () => {
                   handleAdditionalInputChange("Telegram", "messengers");
                 }
               }}
+              sx={styles.editEventCheckbox}
+            /> */}
+            <FormControlLabel
+              control={<Checkbox />}
+              label="WhatsApp"
+              checked={additionalInputs.messengers.includes("WhatsApp")}
+              onChange={(e) =>
+                handleAdditionalInputChange("WhatsApp", "messengers")
+              }
+              sx={styles.editEventCheckbox}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Viber"
+              checked={additionalInputs.messengers.includes("Viber")}
+              onChange={(e) =>
+                handleAdditionalInputChange("Viber", "messengers")
+              }
+              sx={styles.editEventCheckbox}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Telegram"
+              checked={additionalInputs.messengers.includes("Telegram")}
+              onChange={(e) =>
+                handleAdditionalInputChange("Telegram", "messengers")
+              }
               sx={styles.editEventCheckbox}
             />
           </FormGroup>

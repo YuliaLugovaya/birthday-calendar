@@ -104,24 +104,10 @@ export const EventModal: FC<IEventModalProps> = ({
           )}
           {phone && (
             <Typography>
-              {" "}
               <Typography sx={styles.modalAccentText}>Телефон: </Typography>
-              {phone}{" "}
-              {messengers && (
-                <>
-                  {messengers.length > 0 && (
-                    <>
-                      {" "}
-                      (
-                      {messengers
-                        .map((messenger) => (
-                          <span key={messenger}>{messenger}</span>
-                        ))
-                        .join(", ")}
-                      )
-                    </>
-                  )}
-                </>
+              {phone}
+              {messengers && messengers.length > 0 && (
+                <> ({messengers.map((messenger) => messenger).join(", ")})</>
               )}
             </Typography>
           )}
