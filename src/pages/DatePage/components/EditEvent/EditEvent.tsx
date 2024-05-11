@@ -57,7 +57,7 @@ export const EditEvent: FC = () => {
     : "";
   const eventPhoneMessengers = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].messengers
-    : "";
+    : [""];
   const eventAddress = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].address
     : "";
@@ -75,7 +75,7 @@ export const EditEvent: FC = () => {
   const [year, setYear] = useState(eventYear);
   const [socials, setSocials] = useState(eventSocials);
   const [phone, setPhone] = useState(eventPhone);
-  const [messengers, setMessengers] = useState([""]);
+  const [messengers, setMessengers] = useState(eventPhoneMessengers);
   const [address, setAddress] = useState(eventAddress);
   const [email, setEmail] = useState(eventEmail);
   const [textarea, setTextarea] = useState(eventTextarea);
@@ -99,10 +99,11 @@ export const EditEvent: FC = () => {
     setYear("");
     setSocials("");
     setPhone("");
-    // setMessengers(messengers);
+    setMessengers([""]);
     setAddress("");
     setEmail("");
     setTextarea("");
+    setPhoto("");
     dispatch(clearSpecificEvent());
     navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
   };
@@ -112,10 +113,8 @@ export const EditEvent: FC = () => {
     setSocials(eventSocials);
   }, [eventName, eventSocials]);
 
-  const [fileUploaded, setFileUploaded] = useState(false);
+  const [fileUploaded, setFileUploaded] = useState(photo ? true : false);
   const [fileSizeError, setFileSizeError] = useState(false);
-  const [photoName, setPhotoName] = useState("");
-  const [uploadedPhoto, setUploadedPhoto] = useState("");
 
   const handleFileUpload = (files: FileList | null) => {
     if (files && files.length > 0) {
@@ -125,18 +124,11 @@ export const EditEvent: FC = () => {
         const reader = new FileReader();
         reader.onload = (e) => {
           const photo = e.target?.result as string;
-          // const updatedInputs = {
-          //   ...additionalInputs,
-          //   photo,
-          // };
-          // dispatch(updateAdditionalInputs(updatedInputs));
-          setUploadedPhoto(photo);
+          setFileUploaded(true);
+          setFileSizeError(false);
+          setPhoto(photo);
         };
         reader.readAsDataURL(file);
-        const fileName = file.name;
-        setFileUploaded(true);
-        setPhotoName(fileName);
-        setFileSizeError(false);
       } else {
         setFileSizeError(true);
         setFileUploaded(false);
@@ -145,11 +137,7 @@ export const EditEvent: FC = () => {
   };
 
   const handleDeletePhoto = () => {
-    // const updatedInputs = {
-    //   ...additionalInputs,
-    //   photo: "",
-    // };
-    // dispatch(updateAdditionalInputs(updatedInputs));
+    setPhoto("");
     setFileUploaded(false);
   };
 
@@ -188,19 +176,22 @@ export const EditEvent: FC = () => {
           />
           <TextField
             placeholder="Телефон"
-            value={eventPhone}
+            value={phone}
             onChange={(event) => setPhone(event.target.value)}
             sx={styles.editEventChange}
           />
-          {/* <FormGroup sx={styles.editEventCheckboxWrapper}>
+          <FormGroup sx={styles.editEventCheckboxWrapper}>
             <FormControlLabel
               control={<Checkbox />}
               label="WhatsApp"
-              checked={eventPhoneMessengers.includes("WhatsApp")}
-              onChange={(e) => {
-                const target = e.target as HTMLInputElement;
-                if (target.checked) {
-                  handleAdditionalInputChange("WhatsApp", "messengers");
+              checked={messengers.includes("WhatsApp")}
+              onChange={() => {
+                if (messengers.includes("WhatsApp")) {
+                  setMessengers(
+                    messengers.filter((messenger) => messenger !== "WhatsApp"),
+                  );
+                } else {
+                  setMessengers([...messengers, "WhatsApp"]);
                 }
               }}
               sx={styles.editEventCheckbox}
@@ -208,11 +199,14 @@ export const EditEvent: FC = () => {
             <FormControlLabel
               control={<Checkbox />}
               label="Viber"
-              checked={eventPhoneMessengers.includes("Viber")}
-              onChange={(e) => {
-                const target = e.target as HTMLInputElement;
-                if (target.checked) {
-                  handleAdditionalInputChange("Viber", "messengers");
+              checked={messengers.includes("Viber")}
+              onChange={() => {
+                if (messengers.includes("Viber")) {
+                  setMessengers(
+                    messengers.filter((messenger) => messenger !== "Viber"),
+                  );
+                } else {
+                  setMessengers([...messengers, "Viber"]);
                 }
               }}
               sx={styles.editEventCheckbox}
@@ -220,16 +214,19 @@ export const EditEvent: FC = () => {
             <FormControlLabel
               control={<Checkbox />}
               label="Telegram"
-              checked={eventPhoneMessengers.includes("Telegram")}
-              onChange={(e) => {
-                const target = e.target as HTMLInputElement;
-                if (target.checked) {
-                  handleAdditionalInputChange("Telegram", "messengers");
+              checked={messengers.includes("Telegram")}
+              onChange={() => {
+                if (messengers.includes("Telegram")) {
+                  setMessengers(
+                    messengers.filter((messenger) => messenger !== "Telegram"),
+                  );
+                } else {
+                  setMessengers([...messengers, "Telegram"]);
                 }
               }}
               sx={styles.editEventCheckbox}
             />
-          </FormGroup> */}
+          </FormGroup>
         </Box>
         <Box sx={styles.editEventChangeContainer}>
           <TextField
@@ -252,15 +249,9 @@ export const EditEvent: FC = () => {
             onChange={(event) => setTextarea(event.target.value)}
             sx={styles.editEventChange}
           />
-          {/* {fileUploaded && (
+          {fileUploaded && (
             <Box sx={styles.editEventPhotoWrapper}>
-              {uploadedPhoto && (
-                <Avatar
-                  alt={eventName}
-                  src={uploadedPhoto}
-                  sx={styles.editEventPhoto}
-                />
-              )}
+              <Avatar alt={name} src={photo} />
               <Button onClick={handleDeletePhoto} sx={styles.editEventPhotoAdd}>
                 Удалить
               </Button>
@@ -274,9 +265,7 @@ export const EditEvent: FC = () => {
                   type="file"
                   accept=".jpg, .jpeg, .png"
                   style={{ display: "none" }}
-                  onChange={(e) => {
-                    handleFileUpload(e.target.files);
-                  }}
+                  onChange={(e) => handleFileUpload(e.target.files)}
                 />
               </Button>
               {fileSizeError && (
@@ -285,7 +274,7 @@ export const EditEvent: FC = () => {
                 </Typography>
               )}
             </>
-          )} */}
+          )}
         </Box>
       </Box>
 

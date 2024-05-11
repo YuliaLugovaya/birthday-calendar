@@ -52,26 +52,6 @@ export const AddEvent: FC = () => {
   modifiedMonth =
     modifiedMonth.charAt(0).toLowerCase() + modifiedMonth.slice(1);
 
-  const handleAddEvent = () => {
-    dispatch(addEvent("Выберите событие"));
-  };
-
-  // const handleAdditionalInputChange = (value: string, key: string) => {
-  //   let updatedInputs: AdditionalInputs;
-  //   if (key === "messengers") {
-  //     updatedInputs = {
-  //       ...additionalInputs,
-  //       [key]: [...additionalInputs.messengers, value],
-  //     };
-  //   } else {
-  //     updatedInputs = {
-  //       ...additionalInputs,
-  //       [key]: value,
-  //     };
-  //   }
-  //   dispatch(updateAdditionalInputs(updatedInputs));
-  // };
-
   const handleAdditionalInputChange = (value: string, key: string) => {
     let updatedMessengers: string[] = [...additionalInputs.messengers];
 
