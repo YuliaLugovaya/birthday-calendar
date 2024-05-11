@@ -34,7 +34,7 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
     };
   }) => {
     return Object.entries(events).map(([key, event]) => {
-      if (key.startsWith(day + month)) {
+      if (key.startsWith(day + "_" + month)) {
         return (
           <Box key={event.name}>
             <CardMedia

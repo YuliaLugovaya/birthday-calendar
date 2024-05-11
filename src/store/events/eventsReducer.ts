@@ -41,7 +41,7 @@ export const editEventReducer = (
       return {
         ...state,
         allEvents: state.allEvents.map((event) => {
-          const key = `${state.specificDay.day}${state.specificDay.month}`;
+          const key = `${state.specificDay.day}_${state.specificDay.month}`;
           const keyName = state.specificEvent[0][key];
           if (Object.keys(event)[0] === key && event[key].name === keyName) {
             return {

@@ -11,18 +11,15 @@ import {
   Typography,
 } from "@mui/material";
 import { styles } from "./AddEvent.styled";
-import events from "config/events";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addEvent,
   updateAdditionalInputs,
   saveEvent,
   clearSpecificEvent,
 } from "store/events/eventsActions";
 import { AdditionalInputs, EditEventState } from "store/events/eventsTypes";
 import years from "config/years";
-import { EventModal } from "components/EventModal";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
 
 export const AddEvent: FC = () => {
@@ -78,7 +75,7 @@ export const AddEvent: FC = () => {
 
   const handleSaveEvent = () => {
     const newEvent = {
-      [`${specificDay.day}${specificDay.month}`]: additionalInputs,
+      [`${specificDay.day}_${specificDay.month}`]: additionalInputs,
     };
 
     dispatch(saveEvent(newEvent));
@@ -175,42 +172,6 @@ export const AddEvent: FC = () => {
             sx={styles.editEventChange}
           />
           <FormGroup sx={styles.editEventCheckboxWrapper}>
-            {/* <FormControlLabel
-              control={<Checkbox />}
-              label="WhatsApp"
-              checked={additionalInputs.messengers.includes("WhatsApp")}
-              onChange={(e) => {
-                const target = e.target as HTMLInputElement;
-                if (target.checked) {
-                  handleAdditionalInputChange("WhatsApp", "messengers");
-                }
-              }}
-              sx={styles.editEventCheckbox}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Viber"
-              checked={additionalInputs.messengers.includes("Viber")}
-              onChange={(e) => {
-                const target = e.target as HTMLInputElement;
-                if (target.checked) {
-                  handleAdditionalInputChange("Viber", "messengers");
-                }
-              }}
-              sx={styles.editEventCheckbox}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Telegram"
-              checked={additionalInputs.messengers.includes("Telegram")}
-              onChange={(e) => {
-                const target = e.target as HTMLInputElement;
-                if (target.checked) {
-                  handleAdditionalInputChange("Telegram", "messengers");
-                }
-              }}
-              sx={styles.editEventCheckbox}
-            /> */}
             <FormControlLabel
               control={<Checkbox />}
               label="WhatsApp"

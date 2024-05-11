@@ -35,7 +35,7 @@ export const EditEvent: FC = () => {
     (rootReducer: { event: EditEventState }) =>
       rootReducer.event.additionalInputs,
   );
-  const key = `${specificDay.day}${specificDay.month}`;
+  const key = `${specificDay.day}_${specificDay.month}`;
   const keyName = specificEvent[0][key];
   const foundEvents = allEvents.filter(
     (event) => Object.keys(event)[0] === key,

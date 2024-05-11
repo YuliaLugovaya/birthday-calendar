@@ -1,7 +1,7 @@
 {
-  "name": "event-calendar",
+  "name": "birthday-calendar",
   "version": "0.1.0",
-  "homepage": "https://yulialugovaya.github.io/event-calendar",
+  "homepage": "https://yulialugovaya.github.io/birthday-calendar",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -171,7 +171,7 @@ export const DayEvents = () => {
       dispatch(selectEvent(specificEvent));
       modalOpen(event[data].name);
     };
-    if (data === `${specificDay.day}${specificDay.month}`) {
+    if (data === `${specificDay.day}_${specificDay.month}`) {
       return (
         <Box key={event[data].name}>
           <Button

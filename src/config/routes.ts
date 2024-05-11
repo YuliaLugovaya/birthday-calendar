@@ -7,6 +7,6 @@ export const routes = {
       addEvent: "add-event",
       editEvent: "edit-event",
     },
-    allBirthdays: "all-birthday",
+    allBirthdays: "all-birthdays",
   },
 };

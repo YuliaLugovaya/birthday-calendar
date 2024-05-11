@@ -1,8 +1,7 @@
 export const styles = {
   birthdaysContainer: {
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: "column",
     maxWidth: "100%",
     p: "0 20px",
   },
