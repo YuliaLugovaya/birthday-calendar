@@ -64,13 +64,13 @@ export const AddEvent: FC = () => {
 
     const updatedInputs: AdditionalInputs = {
       ...additionalInputs,
+      id: `${Math.floor(Math.random() * 100) + 1}`,
       [key]: key === "messengers" ? updatedMessengers : value,
     };
-    console.log(updatedMessengers);
 
     dispatch(updateAdditionalInputs(updatedInputs));
   };
-
+  console.log(additionalInputs);
   const navigate = useNavigate();
 
   const handleSaveEvent = () => {
@@ -238,14 +238,14 @@ export const AddEvent: FC = () => {
                 />
               )}
               <Button onClick={handleDeletePhoto} sx={styles.editEventPhotoAdd}>
-                Удалить
+                Удалить фото
               </Button>
             </Box>
           )}
           {!fileUploaded && (
             <>
               <Button sx={styles.editEventPhotoAdd} component="label">
-                Добавить фотографию
+                Добавить фото
                 <input
                   type="file"
                   accept=".jpg, .jpeg, .png"

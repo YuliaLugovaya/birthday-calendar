@@ -19,6 +19,7 @@ import { clearSelectEvent, isEventAdded } from "store/events/eventsActions";
 export const EventModal: FC<IEventModalProps> = ({
   openModal,
   modalClose,
+  id,
   name,
   year,
   phone,
@@ -84,37 +85,37 @@ export const EventModal: FC<IEventModalProps> = ({
         </Box>
         <Box sx={styles.modalContentContainer}>
           {year ? (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>
                 Дата рождения:
               </Typography>{" "}
               {day} {modifiedMonth} {year}
-            </Typography>
+            </Box>
           ) : (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>
                 Дата рождения:
               </Typography>{" "}
               {day} {modifiedMonth}
-            </Typography>
+            </Box>
           )}
           {phone && (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>Телефон: </Typography>
               {phone}
               {messengers && messengers.length > 0 && (
                 <> ({messengers.map((messenger) => messenger).join(", ")})</>
               )}
-            </Typography>
+            </Box>
           )}
           {address && (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>Адрес:</Typography>{" "}
               {address}
-            </Typography>
+            </Box>
           )}
           {socials && (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>
                 Социальные сети:
               </Typography>{" "}
@@ -126,27 +127,31 @@ export const EventModal: FC<IEventModalProps> = ({
               >
                 {socials}
               </Link>
-            </Typography>
+            </Box>
           )}
           {email && (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>E-mail:</Typography>{" "}
               {email}
-            </Typography>
+            </Box>
           )}
           {textarea && (
-            <Typography>
+            <Box>
               <Typography sx={styles.modalAccentText}>
                 Дополнительная информация:
               </Typography>{" "}
               {textarea}
-            </Typography>
+            </Box>
           )}
         </Box>
-
-        <Button onClick={handleEditEvent} sx={styles.modalEditButton}>
-          Редактировать
-        </Button>
+        <Box sx={styles.modalEditButtons}>
+          <Button onClick={handleEditEvent} sx={styles.modalEditButton}>
+            Редактировать
+          </Button>
+          <Button onClick={handleEditEvent} sx={styles.modalEditButtonDelete}>
+            Удалить
+          </Button>
+        </Box>
       </Box>
     </Modal>
   );

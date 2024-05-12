@@ -1,4 +1,5 @@
 export interface AdditionalInputs {
+  id: string;
   name: string;
   year: string;
   phone: string;
@@ -35,6 +36,7 @@ export interface EditEventState {
 export const initialState: EditEventState = {
   isEventAdded: false,
   additionalInputs: {
+    id: "",
     name: "",
     year: "",
     phone: "",

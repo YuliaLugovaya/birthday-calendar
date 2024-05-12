@@ -13,17 +13,18 @@ export const Birthdays: FC = () => {
   );
   const groupedEvents: {
     [key: string]: {
-      date: string;
+      day: string;
+      id: string;
       name: string;
       year: string;
-      phone?: string;
-      messengers?: string[];
-      address?: string;
-      socials?: string;
-      email?: string;
-      textarea?: string;
-      photo?: string;
-      modifiedMonth?: string;
+      phone: string;
+      messengers: string[];
+      address: string;
+      socials: string;
+      email: string;
+      textarea: string;
+      photo: string;
+      modifiedMonth: string;
       month: string;
       key: string;
     }[];
@@ -39,6 +40,7 @@ export const Birthdays: FC = () => {
     const birthdayEmail = Object.values(event)[0].email;
     const birthdayTextarea = Object.values(event)[0].textarea;
     const birthdayPhoto = Object.values(event)[0].photo;
+    const birthdayId = Object.values(event)[0].id;
     const [day, month] = key.split("_");
     const monthId = months.find((m) => m.title === month)?.id;
 
@@ -58,7 +60,8 @@ export const Birthdays: FC = () => {
       groupedEvents[monthId] = [];
     }
     groupedEvents[monthId].push({
-      date: day,
+      day: day,
+      id: birthdayId,
       name: birthdayName,
       year: birthdayYear,
       phone: birthdayPhone,
@@ -102,19 +105,54 @@ export const Birthdays: FC = () => {
     dispatch(selectDay(updatedDay));
   };
 
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [year, setYear] = useState("");
+  const [socials, setSocials] = useState("");
+  const [phone, setPhone] = useState("");
+  const [messengers, setMessengers] = useState([""]);
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [textarea, setTextarea] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+
   const handleClick = (
     key: string,
-    name: string,
-    date: string,
+    day: string,
     month: string,
     year: string,
+    id: string,
+    name: string,
+    phone: string,
+    messengers: string[],
+    address: string,
+    socials: string,
+    email: string,
+    textarea: string,
+    photo: string,
+    modifiedMonth: string,
   ) => {
-    modalOpen(name);
+    setId(id);
+    setDay(day);
+    setName(name);
+    setYear(year);
+    setSocials(socials);
+    setPhone(phone);
+    setMessengers(messengers);
+    setAddress(address);
+    setEmail(email);
+    setTextarea(textarea);
+    setPhoto(photo);
+    setMonth(modifiedMonth);
     const specificEvent = {
-      [`${key}`]: name,
+      [`${key}`]: id,
     };
     dispatch(selectEvent(specificEvent));
-    addSpecificDay(date, month, year);
+    addSpecificDay(day, month, year);
+    modalOpen(id);
+    console.log(id);
   };
 
   return (
@@ -126,41 +164,56 @@ export const Birthdays: FC = () => {
             {groupedEvents[id] &&
               groupedEvents[id].map((event) => (
                 <ListItem
-                  key={event.date}
+                  key={event.id}
                   sx={styles.birthdaysItem}
                   onClick={() =>
                     handleClick(
                       event.key,
-                      event.name,
-                      event.date,
+                      event.day,
                       event.month,
                       event.year,
+                      event.id,
+                      event.name,
+                      event.phone,
+                      event.messengers,
+                      event.address,
+                      event.socials,
+                      event.email,
+                      event.textarea,
+                      event.photo,
+                      event.modifiedMonth,
                     )
                   }
                 >
-                  <Typography>
-                    {event.date}: {event.name}
-                  </Typography>
-                  <EventModal
-                    openModal={openModal[event.name]}
-                    modalClose={() => modalClose(event.name)}
-                    name={event.name}
-                    year={event.year}
-                    phone={event.phone}
-                    messengers={event.messengers}
-                    address={event.address}
-                    socials={event.socials}
-                    email={event.email}
-                    textarea={event.textarea}
-                    photo={event.photo}
-                    day={event.date}
-                    modifiedMonth={event.modifiedMonth}
-                  />
+                  <Box sx={styles.birthdaysPerson}>
+                    <Typography sx={styles.birthdaysDay}>
+                      {event.day}
+                    </Typography>{" "}
+                    <Typography sx={styles.birthdaysName}>
+                      {event.name}
+                    </Typography>
+                  </Box>
                 </ListItem>
               ))}
           </List>
         </Box>
       ))}
+      <EventModal
+        openModal={openModal[id]}
+        modalClose={() => modalClose(id)}
+        id={id}
+        name={name}
+        year={year}
+        phone={phone}
+        messengers={messengers}
+        address={address}
+        socials={socials}
+        email={email}
+        textarea={textarea}
+        photo={photo}
+        day={day}
+        modifiedMonth={month}
+      />
     </Box>
   );
 };

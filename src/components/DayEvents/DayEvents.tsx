@@ -60,6 +60,7 @@ export const DayEvents = () => {
 
   const renderEvent = (event: {
     [key: string]: {
+      id: string;
       name: string;
       year?: string;
       phone?: string;
@@ -74,14 +75,15 @@ export const DayEvents = () => {
     const data = Object.keys(event)[0];
     const handleSelectEvent = () => {
       const specificEvent = {
-        [`${data}`]: event[data].name,
+        [`${data}`]: event[data].id,
       };
       dispatch(selectEvent(specificEvent));
-      modalOpen(event[data].name);
+      modalOpen(event[data].id);
+      console.log(event[data].id);
     };
     if (data === `${specificDay.day}_${specificDay.month}`) {
       return (
-        <Box key={event[data].name}>
+        <Box key={event[data].id}>
           <Button
             onClick={handleSelectEvent}
             sx={{
@@ -124,8 +126,9 @@ export const DayEvents = () => {
             </Box>
           </Button>
           <EventModal
-            openModal={openModal[event[data].name]}
-            modalClose={() => modalClose(event[data].name)}
+            openModal={openModal[event[data].id]}
+            modalClose={() => modalClose(event[data].id)}
+            id={event[data].id}
             name={event[data].name}
             year={event[data].year}
             phone={event[data].phone}

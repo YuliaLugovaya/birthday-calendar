@@ -5,7 +5,7 @@ export const styles = {
     flexWrap: "wrap",
     justifyContent: "center",
     maxWidth: "100%",
-    m: "20px",
+    m: "35px 20px",
     border: "1px solid",
     borderColor: "color.disabled",
   },
@@ -26,5 +26,21 @@ export const styles = {
   },
   birthdaysItem: {
     p: "5px 15px",
+  },
+  birthdaysPerson: {
+    cursor: "pointer",
+  },
+  birthdaysDay: {
+    display: "inline",
+    mr: "5px",
+    fontWeight: "700",
+    fontSize: "1.1rem",
+    color: "color.coral",
+  },
+  birthdaysName: {
+    display: "inline",
+    "&:hover": {
+      color: "color.blue",
+    },
   },
 };

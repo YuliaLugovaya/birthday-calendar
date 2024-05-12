@@ -12,6 +12,7 @@ export const colors = {
     greenLight: "#e8f5e9",
     yellowLight: "#fffde7",
     coral: "#ffab91",
+    coralLight: "#fbe9e3",
     disabled: "#e0e0e0",
     grey: "#424242",
   },
@@ -28,6 +29,7 @@ declare module "@mui/material/styles" {
       greenLight: string;
       yellowLight: string;
       coral: string;
+      coralLight: string;
       disabled: string;
       grey: string;
     };
@@ -42,6 +44,7 @@ declare module "@mui/material/styles" {
       greenLight?: string;
       yellowLight?: string;
       coral?: string;
+      coralLight?: string;
       disabled?: string;
       grey?: string;
     };

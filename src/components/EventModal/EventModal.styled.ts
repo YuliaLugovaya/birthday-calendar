@@ -111,6 +111,10 @@ export const styles = {
   modalName: {
     fontSize: "24px",
   },
+  modalEditButtons: {
+    display: "flex",
+    gap: "15px",
+  },
   modalEditButton: {
     width: "200px",
     p: "20px",
@@ -120,6 +124,18 @@ export const styles = {
     color: "text.primary",
     "&:hover": {
       bgcolor: "color.green",
+      color: "text.secondary",
+    },
+  },
+  modalEditButtonDelete: {
+    width: "200px",
+    p: "20px",
+    border: "1px solid",
+    borderColor: "color.coral",
+    bgcolor: "color.coralLight",
+    color: "text.primary",
+    "&:hover": {
+      bgcolor: "color.coral",
       color: "text.secondary",
     },
   },

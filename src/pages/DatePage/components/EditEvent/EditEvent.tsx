@@ -32,11 +32,16 @@ export const EditEvent: FC = () => {
     (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
   );
   const key = `${specificDay.day}_${specificDay.month}`;
-  const keyName = specificEvent[0][key];
+  const keyId = specificEvent[0][key];
   const foundEvents = allEvents.filter(
     (event) => Object.keys(event)[0] === key,
   );
-  const foundEvent = foundEvents.find((event) => event[key].name === keyName);
+  const foundEvent = foundEvents.find((event) => event[key].id === keyId);
+
+  console.log(key);
+  console.log(keyId);
+  console.log(foundEvents);
+  console.log(foundEvent);
   const eventName = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].name
     : "";
@@ -64,7 +69,9 @@ export const EditEvent: FC = () => {
   const eventPhoto = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].photo
     : "";
+  const eventId = foundEvent ? foundEvent[Object.keys(foundEvent)[0]].id : "";
 
+  const [id, setId] = useState(eventId);
   const [name, setName] = useState(eventName);
   const [year, setYear] = useState(eventYear);
   const [socials, setSocials] = useState(eventSocials);
@@ -78,6 +85,7 @@ export const EditEvent: FC = () => {
   const handleUpdateEvent = () => {
     dispatch(
       updateEvent({
+        id,
         name,
         year,
         socials,
@@ -89,6 +97,7 @@ export const EditEvent: FC = () => {
         photo,
       }),
     );
+    setId(id);
     setName("");
     setYear("");
     setSocials("");
@@ -247,14 +256,14 @@ export const EditEvent: FC = () => {
             <Box sx={styles.editEventPhotoWrapper}>
               <Avatar alt={name} src={photo} />
               <Button onClick={handleDeletePhoto} sx={styles.editEventPhotoAdd}>
-                Удалить
+                Удалить фото
               </Button>
             </Box>
           )}
           {!fileUploaded && (
             <>
               <Button sx={styles.editEventPhotoAdd} component="label">
-                Добавить фотографию
+                Добавить фото
                 <input
                   type="file"
                   accept=".jpg, .jpeg, .png"

@@ -28,6 +28,7 @@ export const editEventReducer = (
       };
     case EditEventActionTypes.UPDATE_EVENT: {
       const {
+        id,
         name,
         year,
         socials,
@@ -42,12 +43,13 @@ export const editEventReducer = (
         ...state,
         allEvents: state.allEvents.map((event) => {
           const key = `${state.specificDay.day}_${state.specificDay.month}`;
-          const keyName = state.specificEvent[0][key];
-          if (Object.keys(event)[0] === key && event[key].name === keyName) {
+          const keyId = state.specificEvent[0][key];
+          if (Object.keys(event)[0] === key && event[key].id === keyId) {
             return {
               ...event,
               [key]: {
                 ...event[key],
+                id,
                 name,
                 year,
                 socials,
