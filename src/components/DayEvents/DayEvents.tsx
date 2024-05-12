@@ -1,30 +1,9 @@
 import React, { Suspense, useState } from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 import { styles } from "./DayEvents.styled";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addEvent,
-  updateAdditionalInputs,
-  saveEvent,
-  clearEvent,
-  selectEvent,
-} from "store/events/eventsActions";
-import {
-  AdditionalInputs,
-  EditEventState,
-  SpecificDay,
-} from "store/events/eventsTypes";
-import years from "config/years";
+import { addEvent, selectEvent } from "store/events/eventsActions";
+import { EditEventState } from "store/events/eventsTypes";
 import { EventModal } from "components/EventModal";
 import { Outlet, useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
@@ -33,11 +12,6 @@ export const DayEvents = () => {
   const dispatch = useDispatch();
   const isEventAdded = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.isEventAdded,
-  );
-
-  const additionalInputs = useSelector(
-    (rootReducer: { event: EditEventState }) =>
-      rootReducer.event.additionalInputs,
   );
 
   const allEvents = useSelector(
@@ -65,72 +39,6 @@ export const DayEvents = () => {
     navigate(
       `${routes.home.root}/${routes.home.date.root}/${specificDay.day}/${routes.home.date.addEvent}`,
     );
-  };
-
-  const handleAdditionalInputChange = (value: string, key: string) => {
-    let updatedInputs: AdditionalInputs;
-    if (key === "messengers") {
-      updatedInputs = {
-        ...additionalInputs,
-        [key]: [...additionalInputs.messengers, value],
-      };
-    } else {
-      updatedInputs = {
-        ...additionalInputs,
-        [key]: value,
-      };
-    }
-    dispatch(updateAdditionalInputs(updatedInputs));
-  };
-
-  const handleSaveEvent = () => {
-    const newEvent = {
-      [`${specificDay.day}${specificDay.month}`]: additionalInputs,
-    };
-
-    dispatch(saveEvent(newEvent));
-    dispatch(clearEvent());
-  };
-
-  const [fileUploaded, setFileUploaded] = useState(false);
-  const [fileSizeError, setFileSizeError] = useState(false);
-  const [photoName, setPhotoName] = useState("");
-  const [uploadedPhoto, setUploadedPhoto] = useState("");
-
-  const handleFileUpload = (files: FileList | null) => {
-    if (files && files.length > 0) {
-      const fileSizeLimit = 5 * 1024 * 1024;
-      const file = files[0];
-      if (file.size <= fileSizeLimit) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const photo = e.target?.result as string;
-          const updatedInputs = {
-            ...additionalInputs,
-            photo,
-          };
-          dispatch(updateAdditionalInputs(updatedInputs));
-          setUploadedPhoto(photo);
-        };
-        reader.readAsDataURL(file);
-        const fileName = file.name;
-        setFileUploaded(true);
-        setPhotoName(fileName);
-        setFileSizeError(false);
-      } else {
-        setFileSizeError(true);
-        setFileUploaded(false);
-      }
-    }
-  };
-
-  const handleDeletePhoto = () => {
-    const updatedInputs = {
-      ...additionalInputs,
-      photo: "",
-    };
-    dispatch(updateAdditionalInputs(updatedInputs));
-    setFileUploaded(false);
   };
 
   const [openModal, setOpenModal] = useState<{ [eventName: string]: boolean }>(

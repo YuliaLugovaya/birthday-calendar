@@ -10,6 +10,6 @@ export interface IEventModalProps {
   email?: string;
   textarea?: string;
   photo?: string;
-  day: string;
-  modifiedMonth: string;
+  day?: string;
+  modifiedMonth?: string;
 }

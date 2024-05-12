@@ -31,18 +31,12 @@ export const EditEvent: FC = () => {
   const specificDay = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
   );
-  const additionalInputs = useSelector(
-    (rootReducer: { event: EditEventState }) =>
-      rootReducer.event.additionalInputs,
-  );
   const key = `${specificDay.day}_${specificDay.month}`;
   const keyName = specificEvent[0][key];
   const foundEvents = allEvents.filter(
     (event) => Object.keys(event)[0] === key,
   );
   const foundEvent = foundEvents.find((event) => event[key].name === keyName);
-  console.log(foundEvent);
-  console.log(additionalInputs);
   const eventName = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].name
     : "";

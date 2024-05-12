@@ -12,10 +12,8 @@ import { ReactComponent as CloseIcon } from "assets/svg/icon_close.svg";
 import { styles } from "./EventModal.styled";
 import { IEventModalProps } from "./EventModalTypes";
 import { routes } from "config/routes";
-// import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
-import { EditEventState } from "store/events/eventsTypes";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { clearSelectEvent, isEventAdded } from "store/events/eventsActions";
 
 export const EventModal: FC<IEventModalProps> = ({
@@ -35,9 +33,6 @@ export const EventModal: FC<IEventModalProps> = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const specificDay = useSelector(
-  //   (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
-  // );
   const handleEditEvent = () => {
     dispatch(isEventAdded());
     modalClose();
