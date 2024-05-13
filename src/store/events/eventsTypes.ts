@@ -67,6 +67,7 @@ export enum EditEventActionTypes {
   UPDATE_EVENT = "UPDATE_EVENT",
   SELECT_EVENT = "SELECT_EVENT",
   CLEAR_SELECT_EVENT = "CLEAR_SELECT_EVENT",
+  DELETE_EVENT = "DELETE_EVENT",
 }
 
 export interface AddEventAction {
@@ -99,6 +100,11 @@ export interface SaveEventAction {
   payload: AllEvents;
 }
 
+export interface DeleteEventAction {
+  type: EditEventActionTypes.DELETE_EVENT;
+  payload: string;
+}
+
 export interface ClearEventAction {
   type: EditEventActionTypes.CLEAR_EVENT;
 }
@@ -125,4 +131,5 @@ export type EditEventAction =
   | IsEventAddedAction
   | UpdateEventAction
   | SelectEventAction
-  | ClearSelectEventAction;
+  | ClearSelectEventAction
+  | DeleteEventAction;

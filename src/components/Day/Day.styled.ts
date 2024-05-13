@@ -29,4 +29,13 @@ export const styles = {
     gap: "5px",
     width: "100%",
   },
+  eventCount: {
+    position: "absolute",
+    top: 4,
+    right: 4,
+    fontSize: "0.8rem",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    padding: "2px 4px",
+    borderRadius: 4,
+  },
 };

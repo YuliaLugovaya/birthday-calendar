@@ -14,6 +14,7 @@ import {
   SelectEventAction,
   SpecificEvent,
   ClearSelectEventAction,
+  DeleteEventAction,
 } from "./eventsTypes";
 
 export const addEvent = (payload: string): AddEventAction => {
@@ -56,6 +57,13 @@ export const selectEvent = (payload: SpecificEvent): SelectEventAction => {
 export const saveEvent = (payload: AllEvents): SaveEventAction => {
   return {
     type: EditEventActionTypes.SAVE_EVENT,
+    payload,
+  };
+};
+
+export const deleteEvent = (payload: string): DeleteEventAction => {
+  return {
+    type: EditEventActionTypes.DELETE_EVENT,
     payload,
   };
 };

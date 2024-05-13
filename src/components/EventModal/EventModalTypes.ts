@@ -12,5 +12,6 @@ export interface IEventModalProps {
   textarea?: string;
   photo?: string;
   day?: string;
+  month?: string;
   modifiedMonth?: string;
 }

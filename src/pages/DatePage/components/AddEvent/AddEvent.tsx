@@ -24,30 +24,13 @@ import { routes } from "config/routes";
 
 export const AddEvent: FC = () => {
   const dispatch = useDispatch();
-  const isEventAdded = useSelector(
-    (rootReducer: { event: EditEventState }) => rootReducer.event.isEventAdded,
-  );
   const additionalInputs = useSelector(
     (rootReducer: { event: EditEventState }) =>
       rootReducer.event.additionalInputs,
   );
-  const allEvents = useSelector(
-    (rootReducer: { event: EditEventState }) => rootReducer.event.allEvents,
-  );
   const specificDay = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
   );
-
-  let modifiedMonth = "";
-  if (specificDay.month.endsWith("ь") || specificDay.month.endsWith("й")) {
-    modifiedMonth = specificDay.month.slice(0, -1) + "я";
-  } else if (specificDay.month.endsWith("т")) {
-    modifiedMonth = specificDay.month + "а";
-  } else {
-    modifiedMonth = specificDay.month;
-  }
-  modifiedMonth =
-    modifiedMonth.charAt(0).toLowerCase() + modifiedMonth.slice(1);
 
   const handleAdditionalInputChange = (value: string, key: string) => {
     let updatedMessengers: string[] = [...additionalInputs.messengers];
@@ -64,13 +47,14 @@ export const AddEvent: FC = () => {
 
     const updatedInputs: AdditionalInputs = {
       ...additionalInputs,
-      id: `${Math.floor(Math.random() * 100) + 1}`,
+      id: `${specificDay.day}_${specificDay.month}_${
+        Math.floor(Math.random() * 100) + 1
+      }${Math.floor(Math.random() * 100) + 1}`,
       [key]: key === "messengers" ? updatedMessengers : value,
     };
 
     dispatch(updateAdditionalInputs(updatedInputs));
   };
-  console.log(additionalInputs);
   const navigate = useNavigate();
 
   const handleSaveEvent = () => {
@@ -264,7 +248,6 @@ export const AddEvent: FC = () => {
           )}
         </Box>
       </Box>
-
       <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
         Сохранить
       </Button>

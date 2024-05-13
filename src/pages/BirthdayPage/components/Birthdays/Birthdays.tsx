@@ -117,6 +117,7 @@ export const Birthdays: FC = () => {
   const [photo, setPhoto] = useState("");
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
+  const [modifiedMonth, setModifiedMonth] = useState("");
 
   const handleClick = (
     key: string,
@@ -145,14 +146,14 @@ export const Birthdays: FC = () => {
     setEmail(email);
     setTextarea(textarea);
     setPhoto(photo);
-    setMonth(modifiedMonth);
+    setMonth(month);
+    setModifiedMonth(modifiedMonth);
     const specificEvent = {
       [`${key}`]: id,
     };
     dispatch(selectEvent(specificEvent));
     addSpecificDay(day, month, year);
     modalOpen(id);
-    console.log(id);
   };
 
   return (
@@ -212,7 +213,8 @@ export const Birthdays: FC = () => {
         textarea={textarea}
         photo={photo}
         day={day}
-        modifiedMonth={month}
+        month={month}
+        modifiedMonth={modifiedMonth}
       />
     </Box>
   );

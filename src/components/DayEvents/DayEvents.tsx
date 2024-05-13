@@ -117,7 +117,11 @@ export const DayEvents = () => {
                 }}
               >
                 <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
-                  {event[data].name.charAt(0)}
+                  {event[data].name
+                    .trim()
+                    .split(" ")
+                    .map((word) => word.charAt(0))
+                    .join("")}
                 </Typography>
               </Box>
             )}
@@ -139,6 +143,7 @@ export const DayEvents = () => {
             textarea={event[data].textarea}
             photo={event[data].photo}
             day={specificDay.day}
+            month={specificDay.month}
             modifiedMonth={modifiedMonth}
           />
         </Box>

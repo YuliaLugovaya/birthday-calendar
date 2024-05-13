@@ -34,6 +34,10 @@ export const styles = {
   editEventTitle: {
     fontSize: "2rem",
   },
+  editEventButtons: {
+    display: "flex",
+    gap: "15px",
+  },
   editEventSave: {
     width: "200px",
     p: "20px",
@@ -44,6 +48,19 @@ export const styles = {
     color: "text.primary",
     "&:hover": {
       bgcolor: "color.green",
+      color: "text.secondary",
+    },
+  },
+  editEventBack: {
+    width: "200px",
+    p: "20px",
+    mt: "30px",
+    border: "1px solid",
+    borderColor: "color.yellow",
+    bgcolor: "color.yellowLight",
+    color: "text.primary",
+    "&:hover": {
+      bgcolor: "color.yellow",
       color: "text.secondary",
     },
   },

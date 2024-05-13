@@ -111,6 +111,11 @@ export const EditEvent: FC = () => {
     navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
   };
 
+  const goBack = () => {
+    dispatch(clearSpecificEvent());
+    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+  };
+
   useEffect(() => {
     setName(eventName);
     setSocials(eventSocials);
@@ -281,9 +286,14 @@ export const EditEvent: FC = () => {
         </Box>
       </Box>
 
-      <Button sx={styles.editEventSave} onClick={handleUpdateEvent}>
-        Сохранить
-      </Button>
+      <Box sx={styles.editEventButtons}>
+        <Button sx={styles.editEventSave} onClick={handleUpdateEvent}>
+          Сохранить
+        </Button>
+        <Button sx={styles.editEventBack} onClick={goBack}>
+          Вернуться назад
+        </Button>
+      </Box>
     </Box>
   );
 };

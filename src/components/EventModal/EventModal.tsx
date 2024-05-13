@@ -14,7 +14,11 @@ import { IEventModalProps } from "./EventModalTypes";
 import { routes } from "config/routes";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearSelectEvent, isEventAdded } from "store/events/eventsActions";
+import {
+  clearSelectEvent,
+  deleteEvent,
+  isEventAdded,
+} from "store/events/eventsActions";
 
 export const EventModal: FC<IEventModalProps> = ({
   openModal,
@@ -30,6 +34,7 @@ export const EventModal: FC<IEventModalProps> = ({
   textarea,
   photo,
   day,
+  month,
   modifiedMonth,
 }) => {
   const navigate = useNavigate();
@@ -44,6 +49,11 @@ export const EventModal: FC<IEventModalProps> = ({
   const handleClearSpecificEvent = () => {
     modalClose();
     dispatch(clearSelectEvent());
+  };
+  const handleDeleteEvent = () => {
+    const keyToDelete = `${day}_${month}`;
+    dispatch(deleteEvent(keyToDelete));
+    modalClose();
   };
   return (
     <Modal
@@ -77,7 +87,11 @@ export const EventModal: FC<IEventModalProps> = ({
               }}
             >
               <Typography sx={{ textTransform: "uppercase", color: "#fff" }}>
-                {name.charAt(0)}
+                {name
+                  .trim()
+                  .split(" ")
+                  .map((word) => word.charAt(0))
+                  .join("")}
               </Typography>
             </Box>
           )}
@@ -148,7 +162,7 @@ export const EventModal: FC<IEventModalProps> = ({
           <Button onClick={handleEditEvent} sx={styles.modalEditButton}>
             Редактировать
           </Button>
-          <Button onClick={handleEditEvent} sx={styles.modalEditButtonDelete}>
+          <Button onClick={handleDeleteEvent} sx={styles.modalEditButtonDelete}>
             Удалить
           </Button>
         </Box>
