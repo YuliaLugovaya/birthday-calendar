@@ -127,8 +127,14 @@ export const styles = {
   },
   editAllEvents: {
     display: "flex",
+    flexDirection: "column",
+  },
+  editAddedEventsWrapper: {
+    display: "flex",
     flexDirection: "row",
-    alignSelf: "start",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "15px",
   },
   editAddedEvents: {
     width: "300px",
@@ -136,13 +142,13 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     p: "20px",
-    mr: "20px",
-    gap: "10px",
   },
   editEventAdd: {
+    alignSelf: "center",
     width: "300px",
-    height: "200px",
+    height: "50px",
     p: "20px",
+    m: "20px 0 50px 0",
     border: "1px solid",
     borderColor: "color.green",
     bgcolor: "color.greenLight",

@@ -163,39 +163,41 @@ export const Birthdays: FC = () => {
           <Typography sx={styles.birthdaysMonth}>{title}</Typography>
           <List>
             {groupedEvents[id] &&
-              groupedEvents[id].map((event) => (
-                <ListItem
-                  key={event.id}
-                  sx={styles.birthdaysItem}
-                  onClick={() =>
-                    handleClick(
-                      event.key,
-                      event.day,
-                      event.month,
-                      event.year,
-                      event.id,
-                      event.name,
-                      event.phone,
-                      event.messengers,
-                      event.address,
-                      event.socials,
-                      event.email,
-                      event.textarea,
-                      event.photo,
-                      event.modifiedMonth,
-                    )
-                  }
-                >
-                  <Box sx={styles.birthdaysPerson}>
-                    <Typography sx={styles.birthdaysDay}>
-                      {event.day}
-                    </Typography>{" "}
-                    <Typography sx={styles.birthdaysName}>
-                      {event.name}
-                    </Typography>
-                  </Box>
-                </ListItem>
-              ))}
+              groupedEvents[id]
+                .sort((a, b) => parseInt(a.day) - parseInt(b.day))
+                .map((event) => (
+                  <ListItem
+                    key={event.id}
+                    sx={styles.birthdaysItem}
+                    onClick={() =>
+                      handleClick(
+                        event.key,
+                        event.day,
+                        event.month,
+                        event.year,
+                        event.id,
+                        event.name,
+                        event.phone,
+                        event.messengers,
+                        event.address,
+                        event.socials,
+                        event.email,
+                        event.textarea,
+                        event.photo,
+                        event.modifiedMonth,
+                      )
+                    }
+                  >
+                    <Box sx={styles.birthdaysPerson}>
+                      <Typography sx={styles.birthdaysDay}>
+                        {event.day}
+                      </Typography>{" "}
+                      <Typography sx={styles.birthdaysName}>
+                        {event.name}
+                      </Typography>
+                    </Box>
+                  </ListItem>
+                ))}
           </List>
         </Box>
       ))}

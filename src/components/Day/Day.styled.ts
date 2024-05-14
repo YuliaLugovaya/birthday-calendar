@@ -19,7 +19,10 @@ export const styles = {
     },
   },
   eventIcon: {
-    width: "25px",
+    width: {
+      xs: "15px",
+      md: "25px",
+    },
   },
   eventIconsWrapper: {
     display: "flex",

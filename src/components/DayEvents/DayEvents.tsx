@@ -163,10 +163,12 @@ export const DayEvents = () => {
         </Box>
       ) : (
         <Box sx={styles.editAllEvents}>
-          <Box>{allEvents.map((event) => renderEvent(event))}</Box>
           <Button onClick={handleAddEvent} sx={styles.editEventAdd}>
-            Добавить событие
+            Добавить день рождения
           </Button>
+          <Box sx={styles.editAddedEventsWrapper}>
+            {allEvents.map((event) => renderEvent(event))}
+          </Box>
         </Box>
       )}
     </Box>
