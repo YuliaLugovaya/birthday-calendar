@@ -19,7 +19,7 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
   const allEvents = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.allEvents,
   );
-
+  let hasBirthday = false;
   const renderEvent = (events: {
     [key: string]: {
       id: string;
@@ -35,7 +35,8 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
     };
   }) => {
     return Object.entries(events).map(([key, event]) => {
-      if (key.startsWith(day + "_" + month)) {
+      if (key.startsWith(day + "_" + month) && !hasBirthday) {
+        hasBirthday = true;
         return (
           <Box key={event.id}>
             <CardMedia
@@ -50,60 +51,6 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
       return null;
     });
   };
-
-  // const renderEvent = (events: {
-  //   [key: string]: {
-  //     id: string;
-  //     name: string;
-  //     year?: string;
-  //     phone?: string;
-  //     messengers?: string[];
-  //     address?: string;
-  //     socials?: string;
-  //     email?: string;
-  //     textarea?: string;
-  //     photo?: string;
-  //   };
-  // }) => {
-  //   return Object.entries(events).map(([key, event]) => {
-  //     let birthdayCount = 0;
-  //     Object.entries(events).forEach(([key]) => {
-  //       if (key.startsWith(day + "_" + month)) {
-  //         birthdayCount++;
-  //       }
-  //     });
-  //     if (key.startsWith(day + "_" + month)) {
-  //       birthdayCount++;
-  //       if (birthdayCount === 1) {
-  //         return (
-  //           <Box key={event.id}>
-  //             <CardMedia
-  //               component="img"
-  //               alt="birthday"
-  //               image={birthday}
-  //               sx={styles.eventIcon}
-  //             />
-  //           </Box>
-  //         );
-  //       } else if (birthdayCount > 1) {
-  //         return (
-  //           <Box key={event.id}>
-  //             <CardMedia
-  //               component="img"
-  //               alt="birthday"
-  //               image={birthday}
-  //               sx={styles.eventIcon}
-  //             />
-  //             <Typography variant="caption">{`x${birthdayCount}`}</Typography>
-  //           </Box>
-  //         );
-  //       } else {
-  //         return null;
-  //       }
-  //     }
-  //     return null;
-  //   });
-  // };
 
   const navigate = useNavigate();
   const addSpecificDay = (day: string, month: string, year: string) => {

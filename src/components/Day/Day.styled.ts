@@ -24,6 +24,7 @@ export const styles = {
   eventIconsWrapper: {
     display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
     alignSelf: "end",
     justifyContent: "end",
     gap: "5px",
