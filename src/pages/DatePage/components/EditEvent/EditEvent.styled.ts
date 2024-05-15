@@ -92,17 +92,23 @@ export const styles = {
   },
   editEventChange: {
     width: "400px",
-    border: "1px solid",
+    border: "2px solid",
     borderColor: "color.green",
     borderRadius: "4px",
     m: "5px 0",
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid",
-      borderColor: "color.green",
+      borderWidth: "0px",
     },
-    "&:hover": {
-      border: "1px solid",
-      borderColor: "color.green",
+    // "&:hover": {
+    //   border: "2px solid",
+    //   borderColor: "color.greenLight",
+    // },
+    // "&:focus": {
+    //   border: "2px solid",
+    //   borderColor: "color.greenLight",
+    // },
+    "& fieldset": {
+      borderWidth: "0px",
     },
   },
   editEventCheckboxWrapper: {
@@ -171,5 +177,8 @@ export const styles = {
   editEventChangeFormContainer: {
     display: "flex",
     gap: "10px",
+  },
+  editEventPlaceholder: {
+    color: "text.disabled",
   },
 };

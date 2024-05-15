@@ -89,9 +89,9 @@ export const editEventReducer = (
       const keyToDelete = action.payload;
       return {
         ...state,
-        allEvents: state.allEvents.filter(
-          (event) => Object.keys(event)[0] !== keyToDelete,
-        ),
+        allEvents: state.allEvents.filter((event) => {
+          return Object.values(event)[0].id !== keyToDelete;
+        }),
       };
     }
     case EditEventActionTypes.CLEAR_EVENT:

@@ -9,6 +9,8 @@ import {
   Checkbox,
   Avatar,
   Typography,
+  FormControl,
+  Select,
 } from "@mui/material";
 import { styles } from "./EditEvent.styled";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,11 +39,6 @@ export const EditEvent: FC = () => {
     (event) => Object.keys(event)[0] === key,
   );
   const foundEvent = foundEvents.find((event) => event[key].id === keyId);
-
-  console.log(key);
-  console.log(keyId);
-  console.log(foundEvents);
-  console.log(foundEvent);
   const eventName = foundEvent
     ? foundEvent[Object.keys(foundEvent)[0]].name
     : "";
@@ -82,6 +79,9 @@ export const EditEvent: FC = () => {
   const [textarea, setTextarea] = useState(eventTextarea);
   const [photo, setPhoto] = useState(eventPhoto);
 
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
   const handleUpdateEvent = () => {
     dispatch(
       updateEvent({
@@ -97,18 +97,32 @@ export const EditEvent: FC = () => {
         photo,
       }),
     );
-    setId(id);
-    setName("");
-    setYear("");
-    setSocials("");
-    setPhone("");
-    setMessengers([""]);
-    setAddress("");
-    setEmail("");
-    setTextarea("");
-    setPhoto("");
-    dispatch(clearSpecificEvent());
-    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+    const isValidEmail = (email: string): boolean => {
+      const emailPattern = /^[^s@]+@[^s@]+\.[^s@]+$/;
+      return emailPattern.test(email);
+    };
+    if (!name) {
+      setNameError(true);
+    } else if (email && !isValidEmail(email)) {
+      setEmailError(true);
+    } else {
+      setNameError(false);
+      setEmailError(false);
+      setId(id);
+      setName("");
+      setYear("");
+      setSocials("");
+      setPhone("");
+      setMessengers([""]);
+      setAddress("");
+      setEmail("");
+      setTextarea("");
+      setPhoto("");
+      dispatch(clearSpecificEvent());
+      navigate(
+        `${routes.home.root}/${routes.home.date.root}/${specificDay.day}`,
+      );
+    }
   };
 
   const goBack = () => {
@@ -151,31 +165,47 @@ export const EditEvent: FC = () => {
 
   return (
     <Box sx={styles.editEventChangeWrapper}>
-      <Box sx={styles.editEventChangeFormContainer}>
-        <Box component="form" sx={styles.editEventChangeContainer}>
+      <Box sx={styles.editEventChangeFormContainer} component="form" noValidate>
+        <Box sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Имя (фамилия, имя, отчество)"
             value={name}
-            onChange={(event) => setName(event.target.value)}
-            sx={styles.editEventChange}
+            onChange={(event) => {
+              setName(event.target.value);
+              if (nameError) {
+                setNameError(false);
+              }
+            }}
+            sx={{
+              ...styles.editEventChange,
+              borderColor: nameError ? "color.coral" : "color.green",
+            }}
+            error={nameError}
+            helperText={nameError ? "Введите имя." : ""}
             required
           />
-          <TextField
-            select
-            sx={styles.editEventChange}
-            value={year}
-            onChange={(event) => setYear(event.target.value)}
-          >
-            {years.map((option) => (
-              <MenuItem
-                key={option.value}
-                value={option.value}
-                disabled={option.disabled}
-              >
-                {option.label}
+          <FormControl sx={styles.editEventChange}>
+            <Select
+              value={year}
+              onChange={(event) => setYear(event.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="">
+                <Typography sx={styles.editEventPlaceholder}>
+                  Год рождения
+                </Typography>
               </MenuItem>
-            ))}
-          </TextField>
+              {years.map((option) => (
+                <MenuItem
+                  key={option.value}
+                  value={option.value}
+                  disabled={option.disabled}
+                >
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             placeholder="Ccылка на социальные сети"
             value={socials}
@@ -247,8 +277,22 @@ export const EditEvent: FC = () => {
           <TextField
             placeholder="E-mail"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            sx={styles.editEventChange}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              if (emailError) {
+                setEmailError(false);
+              }
+            }}
+            sx={{
+              ...styles.editEventChange,
+              borderColor: emailError ? "color.coral" : "color.green",
+            }}
+            error={emailError}
+            helperText={
+              emailError
+                ? "E-mail должен содержать символ @, иметь доменное имя и расширение, разделенные точкой, и не содержать пробелов или специальных символов в имени пользователя."
+                : ""
+            }
           />
           <TextField
             placeholder="Дополнительная информация"

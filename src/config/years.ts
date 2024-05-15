@@ -11,10 +11,10 @@ const years = Array.from(
   disabled: false,
 }));
 
-years.unshift({
-  value: "Выберите год",
-  label: "Выберите год",
-  disabled: true,
-});
+// years.unshift({
+//   value: "Выберите год",
+//   label: "Выберите год",
+//   disabled: true,
+// });
 
 export default years;

@@ -4,9 +4,11 @@ import {
   Box,
   Button,
   Checkbox,
+  FormControl,
   FormControlLabel,
   FormGroup,
   MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -57,14 +59,34 @@ export const AddEvent: FC = () => {
   };
   const navigate = useNavigate();
 
-  const handleSaveEvent = () => {
-    const newEvent = {
-      [`${specificDay.day}_${specificDay.month}`]: additionalInputs,
-    };
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
-    dispatch(saveEvent(newEvent));
-    dispatch(clearSpecificEvent());
-    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+  const handleSaveEvent = () => {
+    const isValidEmail = (email: string): boolean => {
+      const emailPattern = /^[^s@]+@[^s@]+\.[^s@]+$/;
+      return emailPattern.test(email);
+    };
+    if (!additionalInputs.name) {
+      setNameError(true);
+    } else if (
+      additionalInputs.email &&
+      !isValidEmail(additionalInputs.email)
+    ) {
+      setEmailError(true);
+    } else {
+      setNameError(false);
+      setEmailError(false);
+      const newEvent = {
+        [`${specificDay.day}_${specificDay.month}`]: additionalInputs,
+      };
+
+      dispatch(saveEvent(newEvent));
+      dispatch(clearSpecificEvent());
+      navigate(
+        `${routes.home.root}/${routes.home.date.root}/${specificDay.day}`,
+      );
+    }
   };
 
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -108,37 +130,56 @@ export const AddEvent: FC = () => {
     setFileUploaded(false);
   };
 
+  const goBack = () => {
+    dispatch(clearSpecificEvent());
+    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+  };
+
   return (
     <Box sx={styles.editEventChangeWrapper}>
-      <Box sx={styles.editEventChangeFormContainer}>
+      <Box sx={styles.editEventChangeFormContainer} component="form" noValidate>
         <Box sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Имя (фамилия, имя, отчество)"
-            value={additionalInputs.name || ""}
-            onChange={(e) =>
-              handleAdditionalInputChange(e.target.value, "name")
-            }
-            sx={styles.editEventChange}
+            value={additionalInputs.name}
+            onChange={(e) => {
+              handleAdditionalInputChange(e.target.value, "name");
+              if (nameError) {
+                setNameError(false);
+              }
+            }}
+            sx={{
+              ...styles.editEventChange,
+              borderColor: nameError ? "color.coral" : "color.green",
+            }}
+            error={nameError}
+            helperText={nameError ? "Введите имя." : ""}
             required
           />
-          <TextField
-            select
-            sx={styles.editEventChange}
-            value={additionalInputs.year || "Выберите год рождения"}
-            onChange={(e) =>
-              handleAdditionalInputChange(e.target.value, "year")
-            }
-          >
-            {years.map((option) => (
-              <MenuItem
-                key={option.value}
-                value={option.value}
-                disabled={option.disabled}
-              >
-                {option.label}
+          <FormControl sx={styles.editEventChange}>
+            <Select
+              value={additionalInputs.year}
+              onChange={(e) =>
+                handleAdditionalInputChange(e.target.value, "year")
+              }
+              displayEmpty
+            >
+              <MenuItem value="">
+                <Typography sx={styles.addEventPlaceholder}>
+                  Год рождения
+                </Typography>
               </MenuItem>
-            ))}
-          </TextField>
+              {years.map((option) => (
+                <MenuItem
+                  key={option.value}
+                  value={option.value}
+                  disabled={option.disabled}
+                >
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             placeholder="Ccылка на социальные сети"
             value={additionalInputs.socials}
@@ -149,7 +190,7 @@ export const AddEvent: FC = () => {
           />
           <TextField
             placeholder="Телефон"
-            value={additionalInputs.phone || ""}
+            value={additionalInputs.phone}
             onChange={(e) =>
               handleAdditionalInputChange(e.target.value, "phone")
             }
@@ -188,20 +229,31 @@ export const AddEvent: FC = () => {
         <Box sx={styles.editEventChangeContainer}>
           <TextField
             placeholder="Адрес"
-            value={additionalInputs.address || ""}
+            value={additionalInputs.address}
             onChange={(e) =>
               handleAdditionalInputChange(e.target.value, "address")
             }
             sx={styles.editEventChange}
           />
-
           <TextField
             placeholder="E-mail"
             value={additionalInputs.email}
-            onChange={(e) =>
-              handleAdditionalInputChange(e.target.value, "email")
+            onChange={(e) => {
+              handleAdditionalInputChange(e.target.value, "email");
+              if (emailError) {
+                setEmailError(false);
+              }
+            }}
+            sx={{
+              ...styles.editEventChange,
+              borderColor: emailError ? "color.coral" : "color.green",
+            }}
+            error={emailError}
+            helperText={
+              emailError
+                ? "E-mail должен содержать символ @, иметь доменное имя и расширение, разделенные точкой, и не содержать пробелов или специальных символов в имени пользователя."
+                : ""
             }
-            sx={styles.editEventChange}
           />
           <TextField
             placeholder="Дополнительная информация"
@@ -248,9 +300,14 @@ export const AddEvent: FC = () => {
           )}
         </Box>
       </Box>
-      <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
-        Сохранить
-      </Button>
+      <Box sx={styles.editEventButtons}>
+        <Button sx={styles.editEventSave} onClick={handleSaveEvent}>
+          Сохранить
+        </Button>
+        <Button sx={styles.editEventBack} onClick={goBack}>
+          Вернуться назад
+        </Button>
+      </Box>
     </Box>
   );
 };

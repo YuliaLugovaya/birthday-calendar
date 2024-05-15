@@ -51,7 +51,7 @@ export const EventModal: FC<IEventModalProps> = ({
     dispatch(clearSelectEvent());
   };
   const handleDeleteEvent = () => {
-    const keyToDelete = `${day}_${month}`;
+    const keyToDelete = id;
     dispatch(deleteEvent(keyToDelete));
     modalClose();
   };

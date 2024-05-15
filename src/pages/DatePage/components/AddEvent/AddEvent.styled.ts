@@ -1,30 +1,4 @@
 export const styles = {
-  // editEventContainer: {
-  //   "& .MuiDrawer-paperAnchorTop": {
-  //     width: "100vw",
-  //     height: "100vh",
-  //     alignItems: "start",
-  //   },
-  // },
-  // editEventHeader: {
-  //   display: "flex",
-  //   justifyContent: "start",
-  //   alignItems: "center",
-  //   width: "100%",
-  //   p: "15px",
-  //   mb: "15px",
-  //   bgcolor: "color.greenLight",
-  // },
-  // editEventIconClose: {
-  //   width: "30px",
-  //   cursor: "pointer",
-  // },
-  // editEventFormWrapper: {
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   alignItems: "center",
-  //   width: "100%",
-  // },
   editEventContant: {
     display: "flex",
     flexDirection: "column",
@@ -33,6 +7,10 @@ export const styles = {
   },
   editEventTitle: {
     fontSize: "2rem",
+  },
+  editEventButtons: {
+    display: "flex",
+    gap: "15px",
   },
   editEventSave: {
     width: "200px",
@@ -44,6 +22,19 @@ export const styles = {
     color: "text.primary",
     "&:hover": {
       bgcolor: "color.green",
+      color: "text.secondary",
+    },
+  },
+  editEventBack: {
+    width: "200px",
+    p: "20px",
+    mt: "30px",
+    border: "1px solid",
+    borderColor: "color.yellow",
+    bgcolor: "color.yellowLight",
+    color: "text.primary",
+    "&:hover": {
+      bgcolor: "color.yellow",
       color: "text.secondary",
     },
   },
@@ -79,17 +70,23 @@ export const styles = {
   },
   editEventChange: {
     width: "400px",
-    border: "1px solid",
+    border: "2px solid",
     borderColor: "color.green",
     borderRadius: "4px",
     m: "5px 0",
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid",
-      borderColor: "color.green",
+      borderWidth: "0px",
     },
-    "&:hover": {
-      border: "1px solid",
-      borderColor: "color.green",
+    // "&:hover": {
+    //   border: "2px solid",
+    //   borderColor: "color.greenLight",
+    // },
+    // "&:focus": {
+    //   border: "2px solid",
+    //   borderColor: "color.greenLight",
+    // },
+    "& fieldset": {
+      borderWidth: "0px",
     },
   },
   editEventCheckboxWrapper: {
@@ -154,5 +151,8 @@ export const styles = {
       bgcolor: "color.green",
       color: "text.secondary",
     },
+  },
+  addEventPlaceholder: {
+    color: "text.disabled",
   },
 };
