@@ -113,7 +113,7 @@ export const styles = {
   },
   modalEditButtons: {
     display: "flex",
-    gap: "15px",
+    gap: "10px",
   },
   modalEditButton: {
     width: "200px",

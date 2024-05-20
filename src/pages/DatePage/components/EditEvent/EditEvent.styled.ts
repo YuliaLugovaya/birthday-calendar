@@ -35,13 +35,24 @@ export const styles = {
     fontSize: "2rem",
   },
   editEventButtons: {
+    width: {
+      lg: "auto",
+      xs: "100%",
+    },
     display: "flex",
-    gap: "15px",
+    flexDirection: {
+      lg: "row",
+      xs: "column",
+    },
+    gap: "10px",
+    mt: "30px",
   },
   editEventSave: {
-    width: "200px",
+    width: {
+      lg: "200px",
+      xs: "100%",
+    },
     p: "20px",
-    mt: "30px",
     border: "1px solid",
     borderColor: "color.green",
     bgcolor: "color.greenLight",
@@ -52,9 +63,11 @@ export const styles = {
     },
   },
   editEventBack: {
-    width: "200px",
+    width: {
+      lg: "200px",
+      xs: "100%",
+    },
     p: "20px",
-    mt: "30px",
     border: "1px solid",
     borderColor: "color.yellow",
     bgcolor: "color.yellowLight",
@@ -64,34 +77,37 @@ export const styles = {
       color: "text.secondary",
     },
   },
-  editEventChoice: {
-    width: "300px",
-    heigth: "50px",
-    border: "1px solid",
-    borderColor: "color.blue",
-    borderRadius: "4px",
-    m: "25px 0",
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid",
-      borderColor: "color.blue",
-    },
-    "&:hover": {
-      border: "1px solid",
-      borderColor: "color.blue",
-    },
-  },
   editEventChangeWrapper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     gap: "10px",
+    width: {
+      xl: "60vw",
+      md: "65vw",
+      xs: "90vw",
+    },
+  },
+  editEventChangeFormContainer: {
+    display: "flex",
+    flexDirection: {
+      lg: "row",
+      xs: "column",
+    },
+    width: "100%",
+    gap: "10px",
   },
   editEventChangeContainer: {
     display: "flex",
     flexDirection: "column",
+    alignItems: {
+      lg: "start",
+      xs: "center",
+    },
+    width: "100%",
   },
   editEventChange: {
-    width: "400px",
+    width: "100%",
     border: "2px solid",
     borderColor: "color.green",
     borderRadius: "4px",
@@ -114,6 +130,7 @@ export const styles = {
   editEventCheckboxWrapper: {
     display: "flex",
     flexDirection: "row",
+    alignSelf: "start",
   },
   editEventCheckbox: {
     fontSize: {
@@ -127,7 +144,7 @@ export const styles = {
       transition: "0.3s ease",
     },
     "& .MuiCheckbox-root:hover": {
-      bgcolor: "#94a97533",
+      bgcolor: "color.yellowLight",
       transition: "0.3s ease",
     },
   },
@@ -137,6 +154,7 @@ export const styles = {
     justifyContent: "center",
     alignItems: "center",
     m: "5px 0",
+    alignSelf: "center",
   },
   editEventPhotoAdd: {
     m: "15px 0",
@@ -145,6 +163,7 @@ export const styles = {
       color: "color.blue",
       bgcolor: "transparent",
     },
+    alignSelf: "center",
   },
   editEventPhoto: {
     width: 70,
@@ -173,10 +192,6 @@ export const styles = {
       bgcolor: "color.green",
       color: "text.secondary",
     },
-  },
-  editEventChangeFormContainer: {
-    display: "flex",
-    gap: "10px",
   },
   editEventPlaceholder: {
     color: "text.disabled",

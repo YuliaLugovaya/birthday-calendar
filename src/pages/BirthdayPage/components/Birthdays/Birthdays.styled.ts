@@ -5,7 +5,10 @@ export const styles = {
     flexWrap: "wrap",
     justifyContent: "center",
     maxWidth: "100%",
-    m: "35px 20px",
+    m: {
+      md: "35px 50px",
+      xs: "35px 20px",
+    },
     border: "1px solid",
     borderColor: "color.disabled",
   },

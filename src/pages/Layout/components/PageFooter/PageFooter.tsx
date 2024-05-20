@@ -1,20 +1,13 @@
 import React, { FC } from "react";
-import { Box, Link, Button } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { styles } from "./PageFooter.styled";
-import { useDispatch } from "react-redux";
-// import { resetBallState } from "store/ball/ballActions";
-// import { resetTaskState } from "store/task/taskActions";
-// import { resetEditState } from "store/edit/editActions";
+import { format } from "date-fns";
+import ru from "date-fns/locale/ru";
 
 export const PageFooter: FC = () => {
-  // const dispatch = useDispatch();
-  // const handleReset = () => {
-  //   window.localStorage.clear();
-  //   dispatch(resetBallState());
-  //   dispatch(resetTaskState());
-  //   dispatch(resetEditState());
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // };
+  const today = new Date();
+  const todayDate = format(today, "d MMMM yyyy", { locale: ru });
+
   return (
     <Box sx={styles.footerWrapper} component="footer">
       <Link
@@ -24,6 +17,7 @@ export const PageFooter: FC = () => {
       >
         GitHub
       </Link>
+      <Box>{todayDate}</Box>
     </Box>
   );
 };
