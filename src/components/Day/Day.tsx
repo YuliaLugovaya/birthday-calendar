@@ -9,6 +9,7 @@ import birthday from "assets/images/png/birthday-cake.png";
 import { routes } from "config/routes";
 import { selectDay } from "store/events/eventsActions";
 import { useNavigate } from "react-router-dom";
+import months from "config/months";
 
 export const Day: FC<IDayProps> = ({ date, month, year }) => {
   let day: string;
@@ -54,13 +55,17 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
 
   const navigate = useNavigate();
   const addSpecificDay = (day: string, month: string, year: string) => {
+    const numericMonth =
+      months.find((item) => item.title === month)?.month || "";
     const updatedDay: SpecificDay = {
       day,
       month,
       year,
     };
     dispatch(selectDay(updatedDay));
-    navigate(`${routes.home.root}/${routes.home.date.root}/${day}`);
+    navigate(
+      `${routes.home.root}/${routes.home.date.root}/${day}-${numericMonth}`,
+    );
   };
 
   return (

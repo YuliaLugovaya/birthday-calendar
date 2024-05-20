@@ -23,6 +23,7 @@ import { AdditionalInputs, EditEventState } from "store/events/eventsTypes";
 import years from "config/years";
 import { useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
+import months from "config/months";
 
 export const AddEvent: FC = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,9 @@ export const AddEvent: FC = () => {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
+  const numericMonth =
+    months.find((item) => item.title === specificDay.month)?.month || "";
+
   const handleSaveEvent = () => {
     const isValidEmail = (email: string): boolean => {
       const emailPattern = /^[^s@]+@[^s@]+\.[^s@]+$/;
@@ -84,7 +88,7 @@ export const AddEvent: FC = () => {
       dispatch(saveEvent(newEvent));
       dispatch(clearSpecificEvent());
       navigate(
-        `${routes.home.root}/${routes.home.date.root}/${specificDay.day}`,
+        `${routes.home.root}/${routes.home.date.root}/${specificDay.day}-${numericMonth}`,
       );
     }
   };
@@ -132,7 +136,9 @@ export const AddEvent: FC = () => {
 
   const goBack = () => {
     dispatch(clearSpecificEvent());
-    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+    navigate(
+      `${routes.home.root}/${routes.home.date.root}/${specificDay.day}-${numericMonth}`,
+    );
   };
 
   return (

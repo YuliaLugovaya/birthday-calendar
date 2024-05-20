@@ -19,6 +19,7 @@ import {
   deleteEvent,
   isEventAdded,
 } from "store/events/eventsActions";
+import months from "config/months";
 
 export const EventModal: FC<IEventModalProps> = ({
   openModal,
@@ -40,10 +41,12 @@ export const EventModal: FC<IEventModalProps> = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleEditEvent = () => {
+    const numericMonth =
+      months.find((item) => item.title === month)?.month || "";
     dispatch(isEventAdded());
     modalClose();
     navigate(
-      `${routes.home.root}/${routes.home.date.root}/${day}/${routes.home.date.editEvent}`,
+      `${routes.home.root}/${routes.home.date.root}/${day}-${numericMonth}/${routes.home.date.editEvent}`,
     );
   };
   const handleClearSpecificEvent = () => {

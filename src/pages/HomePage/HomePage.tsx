@@ -1,10 +1,10 @@
 import React from "react";
-import { CalendarWrapper } from "./components/CalendarWrapper";
+import { Home } from "./components/Home";
 
 const HomePage = () => {
   return (
     <>
-      <CalendarWrapper />
+      <Home />
     </>
   );
 };

@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
 import { clearSpecificEvent, updateEvent } from "store/events/eventsActions";
 import years from "config/years";
+import months from "config/months";
 
 export const EditEvent: FC = () => {
   const dispatch = useDispatch();
@@ -82,6 +83,9 @@ export const EditEvent: FC = () => {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
+  const numericMonth =
+    months.find((item) => item.title === specificDay.month)?.month || "";
+
   const handleUpdateEvent = () => {
     dispatch(
       updateEvent({
@@ -120,14 +124,16 @@ export const EditEvent: FC = () => {
       setPhoto("");
       dispatch(clearSpecificEvent());
       navigate(
-        `${routes.home.root}/${routes.home.date.root}/${specificDay.day}`,
+        `${routes.home.root}/${routes.home.date.root}/${specificDay.day}-${numericMonth}`,
       );
     }
   };
 
   const goBack = () => {
     dispatch(clearSpecificEvent());
-    navigate(`${routes.home.root}/${routes.home.date.root}/${specificDay.day}`);
+    navigate(
+      `${routes.home.root}/${routes.home.date.root}/${specificDay.day}-${numericMonth}`,
+    );
   };
 
   useEffect(() => {

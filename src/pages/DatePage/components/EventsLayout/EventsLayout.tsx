@@ -22,7 +22,7 @@ export const EventsLayout: FC<IEventsLayoutProps> = ({
     dispatch(clearEvent());
     dispatch(clearSpecificEvent());
     toggleDrawer();
-    navigate(`${routes.home.root}`);
+    navigate(`${routes.home.root}/${routes.home.calendar}`);
   };
   const specificDay = useSelector(
     (rootReducer: { event: EditEventState }) => rootReducer.event.specificDay,
@@ -55,7 +55,7 @@ export const EventsLayout: FC<IEventsLayoutProps> = ({
         />
         <Box sx={styles.editEventContant}>
           <Typography sx={styles.editEventTitle}>
-            {specificDay.day} {modifiedMonth} {specificDay.year}
+            {specificDay.day} {modifiedMonth}
           </Typography>
         </Box>
       </Box>

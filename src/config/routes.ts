@@ -1,6 +1,7 @@
 export const routes = {
   home: {
     root: "/birthday-calendar",
+    calendar: "calendar",
     date: {
       root: "date",
       day: ":day",

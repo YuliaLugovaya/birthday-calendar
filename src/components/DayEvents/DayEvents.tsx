@@ -7,6 +7,7 @@ import { EditEventState } from "store/events/eventsTypes";
 import { EventModal } from "components/EventModal";
 import { Outlet, useNavigate } from "react-router-dom";
 import { routes } from "config/routes";
+import months from "config/months";
 
 export const DayEvents = () => {
   const dispatch = useDispatch();
@@ -35,9 +36,11 @@ export const DayEvents = () => {
 
   const navigate = useNavigate();
   const handleAddEvent = () => {
+    const numericMonth =
+      months.find((item) => item.title === specificDay.month)?.month || "";
     dispatch(addEvent("Выберите событие"));
     navigate(
-      `${routes.home.root}/${routes.home.date.root}/${specificDay.day}/${routes.home.date.addEvent}`,
+      `${routes.home.root}/${routes.home.date.root}/${specificDay.day}-${numericMonth}/${routes.home.date.addEvent}`,
     );
   };
 
@@ -79,7 +82,6 @@ export const DayEvents = () => {
       };
       dispatch(selectEvent(specificEvent));
       modalOpen(event[data].id);
-      console.log(event[data].id);
     };
     if (data === `${specificDay.day}_${specificDay.month}`) {
       return (

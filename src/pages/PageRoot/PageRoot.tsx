@@ -8,6 +8,7 @@ import { EditEvent } from "pages/DatePage/components/EditEvent";
 import { DayEvents } from "components/DayEvents";
 
 const HomePage = lazy(() => import("pages/HomePage"));
+const CalendarPage = lazy(() => import("pages/CalendarPage"));
 const DatePage = lazy(() => import("pages/DatePage"));
 const BirthdayPage = lazy(() => import("pages/BirthdayPage"));
 
@@ -18,6 +19,7 @@ export const PageRoot: FC = () => {
       <Routes>
         <Route path={routes.home.root} element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path={`${routes.home.calendar}`} element={<CalendarPage />} />
           <Route path={`${routes.home.date.root}`} element={<DatePage />}>
             <Route path={`${routes.home.date.day}`} element={<DayEvents />}>
               <Route
