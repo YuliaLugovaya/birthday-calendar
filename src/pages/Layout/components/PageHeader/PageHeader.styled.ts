@@ -71,7 +71,7 @@ export const styles = {
   burgerMenu: {
     "& .MuiDrawer-paperAnchorRight": {
       p: "20px",
-      bgcolor: "color.blue",
+      bgcolor: "color.blueLight",
       width: "80vw",
     },
   },

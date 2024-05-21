@@ -102,7 +102,7 @@ export const EditEvent: FC = () => {
       }),
     );
     const isValidEmail = (email: string): boolean => {
-      const emailPattern = /^[^s@]+@[^s@]+\.[^s@]+$/;
+      const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
       return emailPattern.test(email);
     };
     if (!name) {

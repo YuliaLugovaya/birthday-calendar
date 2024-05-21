@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   Box,
   CardMedia,
@@ -7,7 +7,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { styles } from "./PageHeader.styled";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { routes } from "config/routes";
 import burger from "assets/images/png/burger-menu.png";
 import close from "assets/images/png/close.png";
@@ -16,9 +16,23 @@ import logo from "assets/images/png/logo.png";
 export const PageHeader: FC = () => {
   const isMobile = useMediaQuery("(max-width: 1024px)");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState(routes.home.root);
 
   const toggleDrawer = () => {
     setIsDrawerOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    setActiveLink(routes.home.root);
+  }, []);
+
+  const isActiveLink = (path: string) => {
+    return activeLink.endsWith(path) ? "color.blueDark" : "color.blue";
   };
 
   return (
@@ -58,8 +72,33 @@ export const PageHeader: FC = () => {
                 onClick={toggleDrawer}
               />
               <Box sx={styles.headerLinksBurgerContainer}>
+                <Link onClick={toggleDrawer} to={routes.home.root}>
+                  <Typography
+                    sx={{
+                      ...styles.headerLinksBurger,
+                      color: isActiveLink(routes.home.root),
+                    }}
+                  >
+                    Главная
+                  </Typography>
+                </Link>
+                <Link onClick={toggleDrawer} to={routes.home.calendar}>
+                  <Typography
+                    sx={{
+                      ...styles.headerLinksBurger,
+                      color: isActiveLink(routes.home.calendar),
+                    }}
+                  >
+                    Календарь
+                  </Typography>
+                </Link>
                 <Link onClick={toggleDrawer} to={routes.home.allBirthdays}>
-                  <Typography sx={styles.headerLinksBurger}>
+                  <Typography
+                    sx={{
+                      ...styles.headerLinksBurger,
+                      color: isActiveLink(routes.home.allBirthdays),
+                    }}
+                  >
                     Все дни рождения
                   </Typography>
                 </Link>
@@ -68,8 +107,35 @@ export const PageHeader: FC = () => {
           </Box>
         ) : (
           <Box sx={styles.headerLinksContainer}>
+            <Link to={routes.home.root}>
+              <Typography
+                sx={{
+                  ...styles.headerLinks,
+                  color: isActiveLink(routes.home.root),
+                }}
+              >
+                Главная
+              </Typography>
+            </Link>
+            <Link to={routes.home.calendar}>
+              <Typography
+                sx={{
+                  ...styles.headerLinks,
+                  color: isActiveLink(routes.home.calendar),
+                }}
+              >
+                Календарь
+              </Typography>
+            </Link>
             <Link to={routes.home.allBirthdays}>
-              <Typography sx={styles.headerLinks}>Все дни рождения</Typography>
+              <Typography
+                sx={{
+                  ...styles.headerLinks,
+                  color: isActiveLink(routes.home.allBirthdays),
+                }}
+              >
+                Все дни рождения
+              </Typography>
             </Link>
           </Box>
         )}

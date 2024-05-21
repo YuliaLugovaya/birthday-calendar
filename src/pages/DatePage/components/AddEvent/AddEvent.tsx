@@ -68,7 +68,7 @@ export const AddEvent: FC = () => {
 
   const handleSaveEvent = () => {
     const isValidEmail = (email: string): boolean => {
-      const emailPattern = /^[^s@]+@[^s@]+\.[^s@]+$/;
+      const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
       return emailPattern.test(email);
     };
     if (!additionalInputs.name) {
