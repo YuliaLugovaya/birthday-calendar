@@ -24,7 +24,7 @@ const data: Slide[] = [
   },
   {
     titleAccent: "Записывай и отмечай",
-    titleText: "праздники с легкостью",
+    titleText: "праздники с лёгкостью",
     img: slideSecond,
   },
   {
@@ -74,8 +74,8 @@ export const Home: FC = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
-    // autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 5000,
   };
   const navigate = useNavigate();
   const goCalendar = () => {
