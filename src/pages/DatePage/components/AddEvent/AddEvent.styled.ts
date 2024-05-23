@@ -19,7 +19,7 @@ export const styles = {
       xs: "column",
     },
     gap: "10px",
-    mt: "30px",
+    m: "30px 0",
   },
   editEventSave: {
     width: {

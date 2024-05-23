@@ -48,57 +48,101 @@ export const Calendar: FC = () => {
   };
 
   return (
-    <Box sx={styles.calendarContainer}>
-      <Button
-        sx={{
-          ...styles.calendarPrev,
-          "&:before": {
-            width: "20px",
-            height: "20px",
-            position: "absolute",
-            content: '""',
-            background: `url(${prev}) no-repeat`,
-          },
-          "&:hover": {
-            bgcolor: isDesktop ? "#0097a7" : "#e0f7fa",
-          },
-          "&:disabled": {
-            bgcolor: "#e0f7fa88",
-            pointerEvents: "none",
-          },
-        }}
-        onClick={prevSlide}
-      ></Button>
-      <Slider ref={sliderRef} {...settings}>
-        {monthItems.map((month) => (
-          <Month
-            key={month.id}
-            title={month.title}
-            year={month.year}
-            id={month.id}
-          />
-        ))}
-      </Slider>
-      <Button
-        sx={{
-          ...styles.calendarNext,
-          "&:before": {
-            width: "20px",
-            height: "20px",
-            position: "absolute",
-            content: '""',
-            background: `url(${next}) no-repeat`,
-          },
-          "&:hover": {
-            bgcolor: isDesktop ? "#0097a7" : "#e0f7fa",
-          },
-          "&:disabled": {
-            bgcolor: "#e0f7fa88",
-            pointerEvents: "none",
-          },
-        }}
-        onClick={nextSlide}
-      ></Button>
+    <Box>
+      <Box sx={styles.calendarContainer}>
+        <Button
+          sx={{
+            ...styles.calendarPrev,
+            "&:before": {
+              width: "20px",
+              height: "20px",
+              position: "absolute",
+              content: '""',
+              background: `url(${prev}) no-repeat`,
+            },
+            "&:hover": {
+              bgcolor: isDesktop ? "#0097a7" : "#e0f7fa",
+            },
+            "&:disabled": {
+              bgcolor: "#e0f7fa88",
+              pointerEvents: "none",
+            },
+          }}
+          onClick={prevSlide}
+        ></Button>
+        <Slider ref={sliderRef} {...settings}>
+          {monthItems.map((month) => (
+            <Month
+              key={month.id}
+              title={month.title}
+              year={month.year}
+              id={month.id}
+            />
+          ))}
+        </Slider>
+        <Button
+          sx={{
+            ...styles.calendarNext,
+            "&:before": {
+              width: "20px",
+              height: "20px",
+              position: "absolute",
+              content: '""',
+              background: `url(${next}) no-repeat`,
+            },
+            "&:hover": {
+              bgcolor: isDesktop ? "#0097a7" : "#e0f7fa",
+            },
+            "&:disabled": {
+              bgcolor: "#e0f7fa88",
+              pointerEvents: "none",
+            },
+          }}
+          onClick={nextSlide}
+        ></Button>
+      </Box>
+      <Box sx={styles.calendarButtons}>
+        <Button
+          sx={{
+            ...styles.calendarPrevMobile,
+            "&:before": {
+              width: "20px",
+              height: "20px",
+              position: "absolute",
+              content: '""',
+              background: `url(${prev}) no-repeat`,
+            },
+            "&:hover": {
+              bgcolor: isDesktop ? "#0097a7" : "#e0f7fa",
+            },
+            "&:disabled": {
+              bgcolor: "#e0f7fa88",
+              pointerEvents: "none",
+            },
+          }}
+          onClick={prevSlide}
+        ></Button>
+        <Button
+          sx={{
+            ...styles.calendarNextMobile,
+            "&:before": {
+              width: "20px",
+              height: "20px",
+              position: "absolute",
+              content: '""',
+              background: `url(${next}) no-repeat`,
+            },
+            "&:hover": {
+              bgcolor: isDesktop ? "#0097a7" : "#e0f7fa",
+            },
+            "&:disabled": {
+              bgcolor: "#e0f7fa88",
+              pointerEvents: "none",
+            },
+          }}
+          onClick={nextSlide}
+        ></Button>
+      </Box>
     </Box>
   );
 };

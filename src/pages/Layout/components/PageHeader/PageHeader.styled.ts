@@ -17,7 +17,7 @@ export const styles = {
   },
   headerLogo: {
     fontSize: {
-      xs: "1rem",
+      xs: "1.2rem",
       md: "1.5rem",
     },
     color: "color.blue",

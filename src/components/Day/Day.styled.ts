@@ -4,9 +4,17 @@ export const styles = {
     justifyContent: "start",
     alignItems: "start",
     maxWidth: "150px",
-    height: "70px",
+    minWidth: "10px",
+    height: {
+      xs: "50px",
+      md: "70px",
+    },
     gap: "10px",
-    p: "5px",
+    p: {
+      xs: "3px",
+      sm: "4px",
+      md: "5px",
+    },
     borderRadius: "0px",
     border: "1px solid",
     borderColor: "color.green",
@@ -16,6 +24,13 @@ export const styles = {
     },
     "&:hover": {
       bgcolor: "color.blueLight",
+    },
+  },
+  dayText: {
+    fontSize: {
+      xs: "0.7rem",
+      sm: "0.8rem",
+      md: "1rem",
     },
   },
   eventIcon: {

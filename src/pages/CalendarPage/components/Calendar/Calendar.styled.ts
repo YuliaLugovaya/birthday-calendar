@@ -4,7 +4,10 @@ export const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     maxWidth: "100%",
-    p: "0 20px",
+    p: {
+      xs: "0px",
+      lg: "0 20px",
+    },
     "& .slick-slider": {
       "& .slick-arrow": {
         display: "none !important",
@@ -25,18 +28,19 @@ export const styles = {
     },
   },
   calendarButtons: {
-    display: "flex",
-    justifyContent: {
-      xs: "center",
-      lg: "end",
+    display: {
+      xs: "flex",
+      lg: "none",
     },
-    gap: "10px",
-    m: {
-      xs: "10px 20px 20% 20px",
-      lg: "20px",
-    },
+    justifyContent: "center",
+    gap: "20px",
+    m: "30px",
   },
   calendarPrev: {
+    display: {
+      xs: "none",
+      lg: "flex",
+    },
     bgcolor: "color.blueLight",
     borderRadius: "50px",
     width: "50px",
@@ -44,6 +48,32 @@ export const styles = {
     minWidth: "0px",
   },
   calendarNext: {
+    display: {
+      xs: "none",
+      lg: "flex",
+    },
+    bgcolor: "color.blueLight",
+    borderRadius: "50px",
+    width: "50px",
+    height: "50px",
+    minWidth: "0px",
+  },
+  calendarPrevMobile: {
+    // display: {
+    //   xs: "none",
+    //   lg: "flex",
+    // },
+    bgcolor: "color.blueLight",
+    borderRadius: "50px",
+    width: "50px",
+    height: "50px",
+    minWidth: "0px",
+  },
+  calendarNextMobile: {
+    // display: {
+    //   xs: "none",
+    //   lg: "flex",
+    // },
     bgcolor: "color.blueLight",
     borderRadius: "50px",
     width: "50px",

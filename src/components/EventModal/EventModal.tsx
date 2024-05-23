@@ -148,7 +148,11 @@ export const EventModal: FC<IEventModalProps> = ({
           )}
           {email && (
             <Box>
-              <Typography sx={styles.modalAccentText}>E-mail:</Typography>{" "}
+              <Typography
+                sx={{ ...styles.modalAccentText, wordBreak: "break-all" }}
+              >
+                E-mail:
+              </Typography>{" "}
               {email}
             </Box>
           )}

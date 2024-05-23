@@ -10,7 +10,10 @@ export const styles = {
     justifyContent: "space-between",
   },
   monthTitleElement: {
-    fontSize: "2rem",
+    fontSize: {
+      xs: "1.5rem",
+      md: "2rem",
+    },
     color: "color.blueDark",
   },
   monthContent: {
@@ -48,7 +51,11 @@ export const styles = {
     justifyContent: "start",
     alignItems: "start",
     maxWidth: "150px",
-    height: "70px",
+    minWidth: "10px",
+    height: {
+      xs: "50px",
+      md: "70px",
+    },
     gap: "10px",
     p: "5px",
     borderRadius: "0px",

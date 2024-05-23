@@ -77,7 +77,7 @@ export const Day: FC<IDayProps> = ({ date, month, year }) => {
           bgcolor: isToday ? "color.greenLight" : "text.secondary",
         }}
       >
-        <Typography>{day}</Typography>
+        <Typography sx={styles.dayText}>{day}</Typography>
         <Box sx={styles.eventIconsWrapper}>
           {allEvents.map((event) => renderEvent(event))}
         </Box>

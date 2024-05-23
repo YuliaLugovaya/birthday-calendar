@@ -113,6 +113,10 @@ export const styles = {
   },
   modalEditButtons: {
     display: "flex",
+    flexDirection: {
+      xs: "column",
+      md: "row",
+    },
     gap: "10px",
   },
   modalEditButton: {
@@ -145,5 +149,6 @@ export const styles = {
     "&:hover": {
       color: "color.green",
     },
+    wordBreak: "break-all",
   },
 };

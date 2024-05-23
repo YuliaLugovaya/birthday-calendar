@@ -3,7 +3,11 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    p: "50px",
+    p: {
+      xs: "20px",
+      md: "50px",
+    },
+    mt: "20px",
     "& .slick-slider": {
       "& .slick-arrow": {
         display: "none !important",
@@ -82,7 +86,7 @@ export const styles = {
       lg: "70%",
     },
     fontSize: {
-      xs: "1rem",
+      xs: "1.2rem",
       md: "1.5rem",
       lg: "2.1rem",
       xl: "3rem",
