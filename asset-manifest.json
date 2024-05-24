@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/birthday-calendar/static/css/main.0f10867d.css",
-    "main.js": "/birthday-calendar/static/js/main.bc2f3f93.js",
+    "main.js": "/birthday-calendar/static/js/main.1e238c93.js",
     "static/css/374.5ee2a3f0.chunk.css": "/birthday-calendar/static/css/374.5ee2a3f0.chunk.css",
     "static/js/374.ec24496f.chunk.js": "/birthday-calendar/static/js/374.ec24496f.chunk.js",
     "static/css/322.5ee2a3f0.chunk.css": "/birthday-calendar/static/css/322.5ee2a3f0.chunk.css",
@@ -19,7 +19,7 @@
     "index.html": "/birthday-calendar/index.html",
     "static/media/icon_close.svg": "/birthday-calendar/static/media/icon_close.792bd0575fc784a1f5bc682ed86a41d1.svg",
     "main.0f10867d.css.map": "/birthday-calendar/static/css/main.0f10867d.css.map",
-    "main.bc2f3f93.js.map": "/birthday-calendar/static/js/main.bc2f3f93.js.map",
+    "main.1e238c93.js.map": "/birthday-calendar/static/js/main.1e238c93.js.map",
     "374.5ee2a3f0.chunk.css.map": "/birthday-calendar/static/css/374.5ee2a3f0.chunk.css.map",
     "374.ec24496f.chunk.js.map": "/birthday-calendar/static/js/374.ec24496f.chunk.js.map",
     "322.5ee2a3f0.chunk.css.map": "/birthday-calendar/static/css/322.5ee2a3f0.chunk.css.map",
@@ -30,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.0f10867d.css",
-    "static/js/main.bc2f3f93.js"
+    "static/js/main.1e238c93.js"
   ]
 }
