@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/birthday-calendar/static/css/main.0f10867d.css",
+    "main.js": "/birthday-calendar/static/js/main.bc2f3f93.js",
+    "static/css/374.5ee2a3f0.chunk.css": "/birthday-calendar/static/css/374.5ee2a3f0.chunk.css",
+    "static/js/374.ec24496f.chunk.js": "/birthday-calendar/static/js/374.ec24496f.chunk.js",
+    "static/css/322.5ee2a3f0.chunk.css": "/birthday-calendar/static/css/322.5ee2a3f0.chunk.css",
+    "static/js/322.9b22a807.chunk.js": "/birthday-calendar/static/js/322.9b22a807.chunk.js",
+    "static/js/723.a713134a.chunk.js": "/birthday-calendar/static/js/723.a713134a.chunk.js",
+    "static/js/772.93487e87.chunk.js": "/birthday-calendar/static/js/772.93487e87.chunk.js",
+    "static/js/113.22027e61.chunk.js": "/birthday-calendar/static/js/113.22027e61.chunk.js",
+    "static/media/slide_1.jpg": "/birthday-calendar/static/media/slide_1.51724cec2ae239987856.jpg",
+    "static/media/slide_3.jpg": "/birthday-calendar/static/media/slide_3.0ca9bd95414efe29c17e.jpg",
+    "static/media/slide_2.jpg": "/birthday-calendar/static/media/slide_2.9944f43ed6d1754e0115.jpg",
+    "static/media/slick.svg": "/birthday-calendar/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/birthday-calendar/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/birthday-calendar/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/birthday-calendar/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/birthday-calendar/index.html",
+    "static/media/icon_close.svg": "/birthday-calendar/static/media/icon_close.792bd0575fc784a1f5bc682ed86a41d1.svg",
+    "main.0f10867d.css.map": "/birthday-calendar/static/css/main.0f10867d.css.map",
+    "main.bc2f3f93.js.map": "/birthday-calendar/static/js/main.bc2f3f93.js.map",
+    "374.5ee2a3f0.chunk.css.map": "/birthday-calendar/static/css/374.5ee2a3f0.chunk.css.map",
+    "374.ec24496f.chunk.js.map": "/birthday-calendar/static/js/374.ec24496f.chunk.js.map",
+    "322.5ee2a3f0.chunk.css.map": "/birthday-calendar/static/css/322.5ee2a3f0.chunk.css.map",
+    "322.9b22a807.chunk.js.map": "/birthday-calendar/static/js/322.9b22a807.chunk.js.map",
+    "723.a713134a.chunk.js.map": "/birthday-calendar/static/js/723.a713134a.chunk.js.map",
+    "772.93487e87.chunk.js.map": "/birthday-calendar/static/js/772.93487e87.chunk.js.map",
+    "113.22027e61.chunk.js.map": "/birthday-calendar/static/js/113.22027e61.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f10867d.css",
+    "static/js/main.bc2f3f93.js"
+  ]
+}
