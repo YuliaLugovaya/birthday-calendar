@@ -95,7 +95,7 @@ export const AddEvent: FC = () => {
 
   const [fileUploaded, setFileUploaded] = useState(false);
   const [fileSizeError, setFileSizeError] = useState(false);
-  const [photoName, setPhotoName] = useState("");
+  const [, setPhotoName] = useState("");
   const [uploadedPhoto, setUploadedPhoto] = useState("");
 
   const handleFileUpload = (files: FileList | null) => {
